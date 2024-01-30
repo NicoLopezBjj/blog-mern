@@ -22,7 +22,6 @@ passport.use(new JwtStrategy( opts , function(jwt_payload, done){
         } else {
             return done (null, false)
         }
-
     } )
 }))
 
