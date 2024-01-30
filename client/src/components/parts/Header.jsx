@@ -5,8 +5,8 @@ function Header() {
     <header>
         <h1>blog mern.</h1>
         <div className="header-btns">
-            <button className="header-btn signin-btn">Iniciar sesión</button>
-            <button className="header-btn signup-btn">Crear cuenta</button>
+            <a href="/signin"><button className="header-btn signin-btn">Iniciar sesión</button></a>
+            <a href="/signup"><button className="header-btn signup-btn">Crear cuenta</button></a>
         </div>
     </header>
   );
