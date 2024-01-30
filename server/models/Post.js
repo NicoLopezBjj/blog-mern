@@ -17,6 +17,9 @@ const userSchema = new mongoose.Schema({
     },
     likes:{
         type:Number
+    },
+    visits:{
+        type:Number
     }
 })
 
