@@ -1,38 +1,123 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Work+Sans:wght@300&display=swap');
+
+*{
+  margin:0;
+  padding:0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+:root{
+  --str:#F36A3E;
+  --strg:#f55823;
+  --clm:#FFB30B;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+header{
+  font-family:'Work Sans', sans-serif;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  width:100vw;
+  padding:1em;
+  box-sizing:border-box;
+  box-shadow: 0 0 5px black;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+a{
+  text-decoration:none;
+  color:black;
+  font-weight:bold;
 }
 
-.App-link {
-  color: #61dafb;
+button{
+  font-family:'Work Sans', sans-serif;
+  cursor:pointer;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+header h1{
+  margin-left:0.3em;
+}
+
+.hero h1{
+  margin-top:15%;
+  margin-bottom:0.3em;
+  font-size:6rem;
+  text-shadow:0 1px 3px black;
+}
+
+.hero h2{
+  font-size:3.5rem;
+  font-weight:lighter;
+  text-shadow:0 1px 3px black;
+}
+
+.hero-btn:hover{
+  box-shadow:0 0 8px black;
+}
+
+.header-btn:hover{
+  box-shadow:0 0 4px black;
+}
+
+.signin-btn:hover{
+  background-color:var(--str);
+}
+
+.signup-btn:hover{
+  background-color:#333333;
+}
+
+.hero-bg{
+  background-image: url("../public/wave.svg");
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+  position:absolute;
+  z-index:-100;
+  top:0;
+  left:0;
+  width:100vw;
+  height:100vh;
+} /*importante el div con position absolute para meter imagen*/
+
+.hero{
+  width:90%;
+  margin:0 auto;
+  font-family:'Merriweather', serif;
+  text-align:center;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+}
+
+.hero-btns{
+  margin-top:2em;
+}
+
+.hero-btn{
+  font-size:2rem;
+  margin:0 1em;
+  padding:0.3em 1.6em;
+}
+
+.header-btn{
+  font-size:1.1rem;
+  margin:0 0.5em;
+  padding:0.3em 0.6em;
+}
+
+.signin-btn{
+  background-color:var(--strg);
+  border:none;
+  border-radius:0.5em;
+  color:white;
+  transition:all 0.5s;
+}
+
+.signup-btn{
+  background-color:black;
+  border:none;
+  border-radius:0.5em;
+  color:white;
+  transition:all 0.5s;
 }
