@@ -3,7 +3,7 @@ import Header from './parts/Header';
 
 function Hero() {
   return (
-    <div className="hero-bg">
+    <div className="bg-1">
         <Header/>
         <section className="hero">
             <h1>Escribe lo que quieras y gratis.</h1>

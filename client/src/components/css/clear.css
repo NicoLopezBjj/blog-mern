@@ -1,0 +1,10 @@
+.clear-sign-form{
+    background-color:white;
+    border:5px solid var(--strhov);
+}
+
+.clear-sign-form input{
+    border:2px solid var(--drk);
+    font-weight:bold;
+    color:black;
+}

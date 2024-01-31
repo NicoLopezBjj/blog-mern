@@ -1,0 +1,1 @@
+//página para editar perfil, habilitar modo oscuro y cambiar idioma de español a inglés

@@ -6,20 +6,24 @@
 }
 
 :root{
-  --str:#F36A3E;
-  --strg:#f55823;
+  --str:#f55823;
+  --strhov:#f77540;
   --clm:#FFB30B;
+  --drk:#7a1e14;
+}
+
+header, button, input, .sign{
+  font-family:'Work Sans', sans-serif;
 }
 
 header{
-  font-family:'Work Sans', sans-serif;
   display:flex;
   align-items:center;
   justify-content:space-between;
   width:100vw;
-  padding:1em;
+  padding:2em;
   box-sizing:border-box;
-  box-shadow: 0 0 5px black;
+  /*box-shadow: 0 0 5px black;*/
 }
 
 a{
@@ -38,7 +42,7 @@ header h1{
 }
 
 .hero h1{
-  margin-top:15%;
+  margin-top:12%;
   margin-bottom:0.3em;
   font-size:6rem;
   text-shadow:0 1px 3px black;
@@ -50,24 +54,46 @@ header h1{
   text-shadow:0 1px 3px black;
 }
 
+.sign h1{
+  margin-top:19%;
+  margin-bottom:0.5em;
+  font-size:3.5rem;
+}
+
+.sign h3{
+  text-align:center;
+  margin-bottom:0.5em;
+}
+
+.sign-form input{
+  margin:0.8em auto;
+  padding: 0.7em 1.2em;
+  width:80%;
+  border-radius:0.5em;
+  font-size:1.1rem;
+}
+
+.underline:hover{
+  text-decoration: underline;
+}
+
 .hero-btn:hover{
   box-shadow:0 0 8px black;
 }
 
 .header-btn:hover{
-  box-shadow:0 0 4px black;
+  box-shadow:0 1px 4px black;
 }
 
 .signin-btn:hover{
-  background-color:var(--str);
+  background-color:var(--strhov);
 }
 
 .signup-btn:hover{
   background-color:#333333;
 }
 
-.hero-bg{
-  background-image: url("../public/wave.svg");
+.bg-1, .bg-2{
   background-size:cover;
   background-position:center;
   background-repeat:no-repeat;
@@ -78,6 +104,14 @@ header h1{
   width:100vw;
   height:100vh;
 } /*importante el div con position absolute para meter imagen*/
+
+.bg-1{
+  background-image: url("../public/wave.svg");
+}
+
+.bg-2{
+  background-image: url("../public/back.svg");
+}
 
 .hero{
   width:90%;
@@ -94,7 +128,7 @@ header h1{
   margin-top:2em;
 }
 
-.hero-btn{
+.hero-btn, .sign-btn{
   font-size:2rem;
   margin:0 1em;
   padding:0.3em 1.6em;
@@ -107,7 +141,7 @@ header h1{
 }
 
 .signin-btn{
-  background-color:var(--strg);
+  background-color:var(--str);
   border:none;
   border-radius:0.5em;
   color:white;
@@ -120,4 +154,22 @@ header h1{
   border-radius:0.5em;
   color:white;
   transition:all 0.5s;
+}
+
+.sign{
+  width:50%;
+  margin:0 auto;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+}
+
+.sign-form{
+  width:60%;
+  padding:2em 0;
+  margin-bottom:1em;
+  border-radius:0.5rem;
+  display:flex;
+  flex-direction:column;
 }
