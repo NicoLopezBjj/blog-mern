@@ -11,10 +11,12 @@ function SignIn() {
   const [password, setPassword] = useState("")
   const {dark} = useContext(DarkMode)
   const navigate = useNavigate()
+  const token = localStorage.getItem("token")
 
-  const send = (e) => {
+  const send = async (e) => {
     e.preventDefault()
-    axios.post("http://localhost:3001/signin", {nombreOMail, password}, {withCredentials: true}).then(resp => {console.log("=> " + resp.data); navigate("/dashboard")}).catch(err => {console.log("=> " + err)})
+
+    await axios.post("http://localhost:3001/signin", {nombreOMail, password}, {withCredentials: true}).then(resp => {console.log("r => " + resp); localStorage.setItem("token", resp.data.token); navigate("/dashboard")}).catch(err => {console.log("e => " + err)})
   }
 
   return (

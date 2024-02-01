@@ -11,4 +11,8 @@ router.get("/signin",passport.authenticate('jwt', { session: false }), (req, res
 
 router.post("/signin", controllers.signin_post)
 
+router.get("/user", controllers.get_user)
+
+router.get("/signout", controllers.sign_out)
+
 module.exports = router

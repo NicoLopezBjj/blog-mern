@@ -16,14 +16,14 @@ const opts = {
 module.exports.executeStrategy = function(passport) {
     console.log("entré a la estrategia")
     passport.use(new JwtStrategy( opts , async function(jwt_payload, done){ //función passport.use. no encerrar línea de passport.use en el try/catch
-        console.log(jwt_payload)
+        console.log("Payload:", jwt_payload)
         try{
             const usuario = await Usuario.findOne({_id:jwt_payload.sub})
-
+        console.log("este es el usuario: ", usuario)
             if (!usuario) {
                 return done (null,false)
             }
-
+            console.log("el final")
             return done(null, usuario)
 
             // const usuario = await Usuario.findOne( {_id:jwt_payload.sub}, async function (err, usuario) { //función callback que busca el id en el payload de jwt
@@ -43,6 +43,7 @@ module.exports.executeStrategy = function(passport) {
             // } )
         }catch(err){ //error en el try
             console.log(err)
+            console.log("el final del catch")
             return done(err, false)
         }
     }))

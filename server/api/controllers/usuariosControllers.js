@@ -6,6 +6,8 @@ require("dotenv").config()
 
 const secretKey = process.env.SECRETKEYJWT
 
+let user = null
+
 const signup_post = async(req,res)=>{
     const {nombre, mail, password} = req.body
     if(nombre == "" || mail == "" || password == ""){
@@ -29,11 +31,11 @@ const signin_get = async(req,res)=>{
 }
 
 const signin_post = async (req,res) =>{
-    const { nombreOMail, password } = req.body;
+    const { nombreOMail, password } = req.body; //obtengo info de req.body
     console.log(nombreOMail,password)
 
     try {
-        const usuario = await Usuario.findOne({ 
+        const usuario = await Usuario.findOne({ //busca usuario
             $or:[
                 {name: nombreOMail},
                 {email: nombreOMail}
@@ -41,7 +43,7 @@ const signin_post = async (req,res) =>{
          });
         console.log('soy el siginpost',usuario)
 
-        if (!usuario) {
+        if (!usuario) { //si el usuario no está
             return res.status(401).json({ message: 'Credenciales inválidas' });
         }
 
@@ -49,8 +51,10 @@ const signin_post = async (req,res) =>{
 
         if (match) {
             // Usuario autenticado, generar token
+            user = usuario
             const token = jwt.sign({ sub: usuario._id, username: usuario.nombreOMail }, secretKey, { expiresIn: '1h' });
             console.log('verificando el token',token)
+            console.log("0", req.isAuthenticated())
             return res.status(200).json({ token });
         } else {
             return res.status(401).json({ message: 'Credenciales inválidas' });
@@ -61,6 +65,14 @@ const signin_post = async (req,res) =>{
     }
 }
 
+const get_user = (req, res)=>{
+    console.log("1", req.isAuthenticated())
+    if(user != null){
+        res.status(200).json({message:'User data', user: user})
+    }else{
+        res.status(401).json({message: 'No user found'})
+    }
+}
 
 // const signin_post = (req,res, next)=>{
 //     console.log("entré")
@@ -112,12 +124,22 @@ const signin_post = async (req,res) =>{
 // }
 
 const sign_out = async(req,res)=>{
-    
+    console.log("2", req.isAuthenticated())
+    user = null
+    req.logOut(function(err){
+        if(err){
+            return res.status(500).json({message:"Error en el logout", error:err})
+        }
+        console.log("no hay usuario", user, req.user)
+        console.log("3", req.isAuthenticated())
+        res.json("Logged out")
+    })
 }
 
 module.exports = {
     signup_post,
     signin_get,
     signin_post,
+    get_user,
     sign_out
 }
