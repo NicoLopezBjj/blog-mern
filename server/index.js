@@ -1,25 +1,45 @@
+// Dependencies
 const express = require("express")
+const expressSession = require("express-session")
 const cors = require("cors")
 const passport = require('passport')
 require("dotenv").config()
 
+// Files
+const connectDB = require('./db/connection')
+const strategy = require("./config/passport-jwt")
 const usuariosRoutes = require("./api/routes/usuariosRoutes")
+
+// Environment Variables
+const DB_URL = process.env.DB_URL
+const PORT = process.env.PORT
+const SECRET_SESSION = process.env.SECRET_SESSION
 
 const app = express()
 
-// CONNECTION DATABASE
-const connectDB = require('./db/connection')
-const DB_URL = process.env.DB_URL
-const PORT = process.env.PORT
-
+// JSON data transfer on
 app.use(express.json())
 
+// CORS
 app.use(cors({origin:"http://localhost:3000", methods: "GET, POST, DELETE, PUT", credentials:true}))
 
-app.use(passport.initialize())
+// Session
+app.use(expressSession({
+    secret: SECRET_SESSION,
+    resave: false,
+    saveUninitialized:true,
+    cookie: {maxAge: 3 * 60 * 60 * 1000}
+}))
 
+// Passport Strategy
+app.use(passport.initialize())
+app.use(passport.session())
+strategy.executeStrategy(passport) //const.export-func(param:passport dependency)
+
+// Routes
 app.use(usuariosRoutes)
 
+// DB Connection & Port Listen
 const connectDataBase = async () =>{
     try {
         await connectDB(DB_URL)
@@ -31,3 +51,4 @@ const connectDataBase = async () =>{
 }
 
 connectDataBase()
+
