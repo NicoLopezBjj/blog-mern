@@ -3,17 +3,18 @@ import axios from "axios"
 import '../App.css';
 import './css/clear.css'
 import './css/dark.css'
-import Header from './parts/Header';
+import { useNavigate } from 'react-router-dom';
 import { DarkMode } from '../context/DarkMode';
 
 function SignIn() {
   const [nombreOMail, setNombreOMail] = useState("")
   const [password, setPassword] = useState("")
   const {dark} = useContext(DarkMode)
+  const navigate = useNavigate()
 
   const send = (e) => {
     e.preventDefault()
-    axios.post("http://localhost:3001/signin", {nombreOMail, password}, {withCredentials: true}).then(resp => {console.log(resp)}).catch(err => {console.log(err)})
+    axios.post("http://localhost:3001/signin", {nombreOMail, password}, {withCredentials: true}).then(resp => {console.log("=> " + resp.data); navigate("/dashboard")}).catch(err => {console.log("=> " + err)})
   }
 
   return (

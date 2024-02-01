@@ -5,6 +5,7 @@ import { DarkMode } from './context/DarkMode'
 import Hero from './components/Hero';
 import SignIn from './components/SignIn';
 import SignUp from './components/SignUp';
+import Dashboard from './components/Dashboard';
 
 function App() {
   const [dark, setDark] = useState(false)
@@ -28,6 +29,7 @@ function App() {
         <Route path="/" element={<Hero/>}></Route>
         <Route path="/signin" element={<SignIn/>}></Route>
         <Route path="/signup" element={<SignUp/>}></Route>
+        <Route path="/dashboard" element={<Dashboard/>}></Route>
       </Routes>
     </BrowserRouter>
     </DarkMode.Provider>
