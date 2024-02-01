@@ -9,6 +9,7 @@ require("dotenv").config()
 const connectDB = require('./db/connection')
 const strategy = require("./config/passport-jwt")
 const usuariosRoutes = require("./api/routes/usuariosRoutes")
+const postRoutes = require('./api/routes/postRoutes')
 
 // Environment Variables
 const DB_URL = process.env.DB_URL
@@ -37,7 +38,7 @@ app.use(passport.session())
 strategy.executeStrategy(passport) //const.export-func(param:passport dependency)
 
 // Routes
-app.use(usuariosRoutes)
+app.use(usuariosRoutes,postRoutes)
 
 // DB Connection & Port Listen
 const connectDataBase = async () =>{
