@@ -3,11 +3,13 @@ import '../css/clear.css'
 import '../css/dark.css'
 import axios from 'axios'
 import { User } from '../../context/User';
+import { DarkMode } from '../../context/DarkMode';
 import { useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 function Header() {
   const {user, setUser} = useContext(User)
+  const {dark} = useContext(DarkMode)
   const navigate = useNavigate()
   const token = localStorage.getItem("token")
 
@@ -46,12 +48,15 @@ function Header() {
   },[]) //user talvez en dependencias? => Al final No!
 
   return (
-    <header>
+    <header className={dark ? "dark-header" : "clear-header"}>
         <h1>blog mern.</h1>
         {user ? 
           <div className="header-btns">
               <a href="/profile"><button className="header-btn signin-btn">{user.name}</button></a>
-              <a href="/dashboard"><button className="header-btn signin-btn">Muro</button></a>
+              <a href="/dashboard"><button className={window.location.href=="http://localhost:3000/dashboard" ? "header-btn signup-btn" : "header-btn signin-btn"} 
+                disabled={window.location.href=="http://localhost:3000/dashboard" ? "disabled" : ""}>
+                {window.location.href=="http://localhost:3000/dashboard" ? "En el muro" : "Ir al muro"}</button>
+              </a>
               <a href="/"><button className="header-btn signup-btn" onClick={LogOut}>Salir</button></a>
           </div> 
         : 

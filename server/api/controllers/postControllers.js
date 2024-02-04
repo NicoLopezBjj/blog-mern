@@ -9,22 +9,28 @@ const getAllPosts = async (req,res) => {
         res.json(posts)
     } catch (e) {
         console.log('error loading posts',e)
+        res.json("Error")
     }
+}
+
+const getPost = async(req,res)=>{
+    const userId = req.params.userId
+    const postId = req.params.postId
 }
 
 // CREAR UN NUEVO POST PARA UN USUARIO 
 
 const createPost = async (req,res) => {
     const userId = req.params.userId
-    const {title,date,body} = req.body
+    const {username, title, body} = req.body
     try{
         const newPost = new Post({
             user : userId,
-            title,
-            date,
-            body,
+            username: username,
+            title: title,
+            body: body,
             likes:0,
-            visits:0
+            visits:0,
         })
         const savedPost = await newPost.save()
         res.json(savedPost)
@@ -33,4 +39,9 @@ const createPost = async (req,res) => {
     }
 }
 
-module.exports = { getAllPosts, createPost}
+const allPosts = async (req, res) => {
+    const all = await Post.find({})
+    res.json(all)
+}
+
+module.exports = { getAllPosts, getPost, createPost, allPosts }

@@ -7,14 +7,18 @@ const postSchema = new mongoose.Schema({
         ref:'Usuario',
         required:true
     },
+    username:{
+        type:String,
+        required:true,
+    },
     title:{
         type:String,
         required:true,
-        unique:true
     },
     date:{
         type:Date,
-        required:true
+        required:true,
+        default:new Date
     },
     body:{
         type:String,
@@ -25,6 +29,10 @@ const postSchema = new mongoose.Schema({
     },
     visits:{
         type:Number
+    },
+    comments:{
+        type:Array,
+        default:[]
     }
 })
 

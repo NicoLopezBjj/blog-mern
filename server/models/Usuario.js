@@ -8,11 +8,22 @@ const userSchema = new mongoose.Schema({
     },
     password:{
         type:String,
-        required:true
+        required:true,
+        minlength:[6,"Ingrese por favor 6 caracteres o más"]
     },
     email:{
         type:String,
         unique:true
+    },
+    role:{
+        type:String,
+        required:true,
+        default:"user"
+    },
+    image:{
+        type:String,
+        required:true,
+        default:'/blank_user.png'
     }
 })
 

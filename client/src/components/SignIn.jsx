@@ -3,7 +3,7 @@ import axios from "axios"
 import '../App.css';
 import './css/clear.css'
 import './css/dark.css'
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { DarkMode } from '../context/DarkMode';
 
 function SignIn() {
@@ -29,7 +29,7 @@ function SignIn() {
               <input type="password" placeholder="Contraseña" value={password} onChange={(e)=>{setPassword(e.target.value)}} />
               <button className="sign-btn signin-btn">Iniciar sesión</button>
             </form>
-            <p>¿No tienes una cuenta? <a href="/signup" className="underline">Regístrate aquí</a></p>
+            <p>¿No tienes una cuenta? <Link to="/signup" className="underline">Regístrate aquí</Link></p>
         </section>
     </div>
   );

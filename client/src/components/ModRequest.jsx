@@ -1,0 +1,1 @@
+//página para preguntarle a los mods o solicitar ser mod

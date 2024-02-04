@@ -18,7 +18,11 @@ const SECRET_SESSION = process.env.SECRET_SESSION
 
 const app = express()
 
-// JSON data transfer on
+// Static files
+app.use(express.static("../client/public"))
+
+// Data transfer on (URL Encoded and JSON)
+app.use(express.urlencoded({extended: true}))
 app.use(express.json())
 
 // CORS
@@ -38,7 +42,8 @@ app.use(passport.session())
 strategy.executeStrategy(passport) //const.export-func(param:passport dependency)
 
 // Routes
-app.use(usuariosRoutes,postRoutes)
+app.use(usuariosRoutes)
+app.use("/p",postRoutes)
 
 // DB Connection & Port Listen
 const connectDataBase = async () =>{

@@ -28,6 +28,9 @@ const signup_post = async(req,res)=>{
 }
 
 const signin_get = async(req,res)=>{
+    console.log("-1", req.isAuthenticated())
+    console.log("User en el signin_get", req.user)
+    res.json({ message: 'Ruta protegida accedida con éxito' });
 }
 
 const signin_post = async (req,res) =>{
@@ -67,11 +70,28 @@ const signin_post = async (req,res) =>{
 
 const get_user = (req, res)=>{
     console.log("1", req.isAuthenticated())
+    console.log("User en el get_user", req.user)
     if(user != null){
         res.status(200).json({message:'User data', user: user})
     }else{
         res.status(401).json({message: 'No user found'})
     }
+}
+
+const update_profile = async(req, res)=>{
+    
+}
+
+const add_comment = async(req,res)=>{
+
+}
+
+const edit_comment = async(req,res)=>{
+
+}
+
+const delete_comment = async(req,res)=>{
+    
 }
 
 // const signin_post = (req,res, next)=>{
@@ -123,7 +143,12 @@ const get_user = (req, res)=>{
 //     // }
 // }
 
-const sign_out = async(req,res)=>{
+const auth = (req,res)=>{
+    const isAuth = req.isAuthenticated()
+    res.json({situation:isAuth})
+}
+
+const sign_out = (req,res)=>{
     console.log("2", req.isAuthenticated())
     user = null
     req.logOut(function(err){
@@ -141,5 +166,7 @@ module.exports = {
     signin_get,
     signin_post,
     get_user,
+    auth,
+    update_profile,
     sign_out
 }
