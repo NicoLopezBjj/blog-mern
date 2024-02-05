@@ -11,6 +11,7 @@ import SignUp from './components/SignUp';
 import Dashboard from './components/Dashboard';
 import Profile from './components/Profile';
 import AddPost from './components/AddPost';
+import Post from './components/Post';
 import NoPage from './components/NoPage';
 
 function App() {
@@ -43,6 +44,7 @@ function App() {
               <Route path="/dashboard" element={<Dashboard/>}></Route>
               <Route path="/profile" element={<Profile/>}></Route>
               <Route path="/add" element={<AddPost/>}></Route>
+              <Route path="/post/:userId/:postId" element={<Post/>}></Route>
               <Route path="*" element={<NoPage/>}></Route>
             </Routes>
           </BrowserRouter>

@@ -12,7 +12,7 @@
   --drk:#7a1e14;
 }
 
-header, button, input, textarea, .sign, .dashboard, .add-post{
+header, button, input, textarea, .sign, .dashboard, .add-post, .post, .comments{
   font-family:'Work Sans', sans-serif;
 }
 
@@ -97,6 +97,32 @@ header h1{
   margin:0 2em;
 }
 
+.post-header span{
+  font-size:1.8rem;
+}
+
+.post-buttons h3{
+  font-size:1.6rem;
+}
+
+.post-like p{
+  font-weight:bold;
+  font-size:1.3rem;
+}
+
+.comments h1{
+  margin-bottom:1em;
+}
+
+.comments hr{
+  margin:2em 0;
+  border:2px solid var(--str);
+}
+
+.comment span{
+  font-size:1.2rem;
+}
+
 .underline:hover{
   text-decoration: underline;
 }
@@ -121,7 +147,7 @@ header h1{
   box-shadow:0 0 10px black;
 }
 
-.bg-1, .bg-2, .bg-3{
+.bg-1, .bg-2, .bg-3, .bg-4{
   background-size:cover;
   background-position:center;
   background-repeat:no-repeat;
@@ -143,6 +169,10 @@ header h1{
 
 .bg-3{
   background-image: url("../public/add.svg");
+}
+
+.bg-4{
+  background-image: url("../public/dash.svg");
 }
 
 .hero{
@@ -247,7 +277,9 @@ header h1{
 }
 
 .add-input, .add-textarea{
-  padding: 0.5em;
+  padding-top:0.5em;
+  padding-left:0.5em;
+  padding-bottom:0.5em;
   width:100%;
   border-radius:0.3em;
   font-size:1.1rem;
@@ -282,4 +314,102 @@ header h1{
   margin:0.5em 0;
   display:flex;
   justify-content:center;
+}
+
+.post, .comments{
+  width:90%;
+  margin:3em auto;
+  padding:1.5em;
+  border-radius:0.5em;
+}
+
+.post{
+  border:2px solid var(--str);
+}
+
+.post-header{
+  font-size:1.5rem;
+  display:flex;
+  justify-content:space-between;
+}
+
+.post-body{
+  font-weight:bold;
+  font-size:1.4rem;
+  margin:3em;
+}
+
+.post-buttons{
+  margin:0 2em;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.post-like{
+  display:flex;
+  align-items:center;
+}
+
+.like{
+  margin-right:1em;
+  font-size:1.2rem;
+  padding:0.7em 0.8em;
+  border-radius:2rem;
+}
+
+.not-liked, .comment-edition:hover{
+  background-color:transparent;
+  border:2px solid var(--str);
+  color:var(--str);
+  transition:all 1s;
+}
+
+.liked{
+  background-color: var(--str);
+  border:2px solid var(--str);
+  color:white;
+  transition:all 1s;
+}
+
+.comments{
+  width:85%;
+}
+
+.comment-textarea{
+  margin-bottom:2em;
+}
+
+.comment{
+  margin:2em auto;
+  padding:1em 0;
+  border-radius:0.5em;
+  border:2px solid var(--str);
+}
+
+.comment-body{
+  margin:0.8em 2em 1.5em 2em;
+}
+
+.comment-footer{
+  margin:0.5em 2em;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.comment-likes{
+  display:flex;
+  align-items:center;
+}
+
+.dlt{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+}
+
+.dlt-btn{
+  margin:1em;
 }

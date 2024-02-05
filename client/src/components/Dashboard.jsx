@@ -13,7 +13,7 @@ function Dashboard() {
   const {user} = useContext(User)
   const [posts, setPosts] = useState([])
   const {dark} = useContext(DarkMode)
-  console.log(user)
+  //console.log(user)
 
   useEffect(()=>{
     console.log("el dashboard")
@@ -23,7 +23,7 @@ function Dashboard() {
         if(user && petition.data){
           setPosts(petition.data)
         }
-        console.log("P2", posts)
+        //console.log("P2", posts)
     }
     postsOnDashboard()
   },[user]) //user como dependencia. Si user es null este useEffect no se ejecuta, pero lo hace siempre que user sea una variable activa con un valor
@@ -35,9 +35,9 @@ function Dashboard() {
   //   }
   //   auth()
   // },[])
-  console.log("P", posts)
+  //console.log("P", posts)
   return (
-    <div className="bg-2">
+    <div className="bg-4">
         <Header/>
         <section className={dark ? "dashboard dark-dashboard" : "dashboard clear-dashboard"}>
             <div className="dashboard-header">
@@ -48,8 +48,9 @@ function Dashboard() {
               {/* posts.map return (<Link to=`/p.user/p._id`><PostThumbnail c props /></Link>) */}
                 {posts.length > 0 ? 
                   posts.map((p)=>{
-                    const post = `/${p.user}/${p._id}`
-                    return (<Link to={post}><PostThumbnail title={p.title} 
+                    const post = `/post/${p.user}/${p._id}`
+                    return (<Link to={post}><PostThumbnail key={p._id}
+                        title={p.title} 
                         username={p.username} 
                         date={p.date.slice(0, 10)} 
                         body={p.body} 

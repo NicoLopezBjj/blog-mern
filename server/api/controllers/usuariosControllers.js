@@ -82,18 +82,6 @@ const update_profile = async(req, res)=>{
     
 }
 
-const add_comment = async(req,res)=>{
-
-}
-
-const edit_comment = async(req,res)=>{
-
-}
-
-const delete_comment = async(req,res)=>{
-    
-}
-
 // const signin_post = (req,res, next)=>{
 //     console.log("entré")
 //     passport.authenticate("jwt", {session:false}, (err, user, info)=>{

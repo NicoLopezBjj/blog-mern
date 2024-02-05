@@ -16,7 +16,7 @@ function PostThumbnail({title, username, date, body, likes, visits, comments}) {
         <div className="thumbnail-footer">
           <h3>{likes} likes</h3>
           <h3>{visits} visits</h3>
-          <h3>{comments.length} comments </h3>
+          <h3>{comments.length} {comments.length === 1 ? "comment" : "comments"} </h3>
         </div>
     </div>
   );
