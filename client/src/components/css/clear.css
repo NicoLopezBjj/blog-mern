@@ -8,3 +8,12 @@
     font-weight:bold;
     color:black;
 }
+
+.clear-dashboard, .clear-add-post{
+    background-color:white;
+    box-shadow:0 1px 3px black;
+}
+
+.clear-add-input, .clear-add-textarea{
+    border:2px solid black;
+}

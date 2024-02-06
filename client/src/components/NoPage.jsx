@@ -1,4 +1,6 @@
 import '../App.css';
+import './css/clear.css'
+import './css/dark.css'
 import Header from './parts/Header';
 
 function NoPage() {
