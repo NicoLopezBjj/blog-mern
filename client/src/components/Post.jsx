@@ -95,8 +95,8 @@ function Post() {
                         <button className={like ? "like liked" : "like not-liked"} onClick={like ? no_liked : liked}>{like ? <i class="fa-solid fa-thumbs-up"></i> : <i class="fa-regular fa-thumbs-up"></i>}</button>
                         <p>{post[0].likes}</p>
                       </div>
-                      {user.role == "admin" && // button delete post
-                        <button className="admin-delete-post"></button>}
+                      {/* {user.role == "admin" && // button delete post
+                        <button className="admin-delete-post"></button>} */}
                       <h3>{post[0].visits} {post[0].visits === 1 ? "visit" : "visits"}</h3>
                   </div>
               </section>

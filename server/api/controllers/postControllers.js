@@ -165,11 +165,47 @@ const edit_comment = async(req,res)=>{
 }
 
 const like_comment = async(req,res)=>{
+    const postId = req.params.postId
+    const commentId = req.params.commentId
+    console.log('come for like_comment i am post',postId)
+    console.log('come for like_comment i am comment',commentId)
 
+    try{
+        const post = await Post.findById(postId)
+        if(!post){
+            return res.status(404).json({ error : 'the post does not exist'})
+        }
+        const comment = post.comments.find(comment => comment._id.toString() === commentId)
+        if(!comment){
+            return res.status(404).json({ error : 'the comment does not exist'})
+        }
+        comment.likes ++
+        const likedComment = await Post.findByIdAndUpdate(postId, { 'comments.$[elem].likes': comment.likes }, { arrayFilters: [{ 'elem._id': commentId }], new: true });
+        await post.save()
+        res.status(200).json(likedComment)
+    } catch (e){
+        console.log('error when liking comment',e)
+    }
 }
 
 const no_like_comment = async(req,res)=>{
-
+    const postId = req.params.postId
+    const commentId = req.params.commentId
+    try{
+        const post = await Post.findById(postId)
+        if(!post){
+            return res.status(404).json({ error : 'the post does not exist'})
+        }
+        const comment = post.comments.find(comment => comment._id.toString() === commentId)
+        if(!comment){
+            return res.status(404).json({ error : 'the comment does not exist'})
+        }
+        comment.likes--
+        const noLikedComment = await post.save()
+        res.status(200).json(noLikedComment)
+    } catch (e){
+        console.log('error when removing like from comment',e)
+    }
 }
 
 // ELIMINAR COMENTARIO
@@ -187,4 +223,4 @@ const delete_comment = async(req,res)=>{
     }
 }
 
-module.exports = { getUserPosts, getPost, createPost, allPosts, visit, like, no_like, get_comments, add_comment, edit_comment, delete_comment }
+module.exports = { getUserPosts, getPost, createPost, allPosts, visit, like, no_like, get_comments, add_comment, edit_comment, delete_comment, like_comment, no_like_comment }
