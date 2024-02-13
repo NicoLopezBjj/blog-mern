@@ -1,6 +1,6 @@
 //comentarios
 
-import { useContext, useState } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import axios from 'axios';
 import '../../App.css';
 import '../css/clear.css'
@@ -17,16 +17,31 @@ function Comment({id, username, comment, date, time, likes}) {
   const {user} = useContext(User)
   const {userId, postId, commentId} = useParams()
 
-    const liked = async () => {
+  useEffect(()=>{
+    console.log("lo hace!!!")
+    async function getCommentLike(){
+      const petition = await axios.get(`http://localhost:3001/p/${userId}/${postId}/${commentId}/get-c-like`)
+      if(petition.data == "found"){
+        console.log("lo hizo")
+        setLike(true)
+      }else{
+        setLike(false)
+      }
+    }
+    //getCommentLike()
+  },[])
+
+  const liked = async () => {
       const commentId = {id}
       console.log('come liked front',commentId)
       try{
-        await axios.get(`http://localhost:3001/p/${postId}/${commentId.id}/like-comment`,{withCredentials:true})
+        await axios.get(`http://localhost:3001/p/${userId}/${postId}/${commentId.id}/like-comment`,{withCredentials:true})
         setLike(true)
         setComments(prevComments => ({
           ...prevComments,
           likes :prevComments.likes +1
-      }))
+        }))
+        window.location.reload()
       } catch(e){
         console.log('error when like comment',e)
       }
@@ -35,20 +50,20 @@ function Comment({id, username, comment, date, time, likes}) {
   const no_liked = async () => {
     const commentId = {id}
     try{
-      await axios.get(`http://localhost:3001/p/${postId}/${commentId.id}/no_like-comment`,{withCredentials:true})
+      await axios.get(`http://localhost:3001/p/${userId}/${postId}/${commentId.id}/no_like-comment`,{withCredentials:true})
       setLike(false)
     } catch(e){
       console.log('error when removing like from comment',e)
     }
   }
 
-  const edition = () => {
-    setEdit(true)
-  }
+  // const edition = () => {
+  //   setEdit(true)
+  // }
 
-  const deletes = () => {
-    setDelete(true)
-  }
+  // const deletes = () => {
+  //   setDelete(true)
+  // }
 
   const exit = () => {
     if(edit){
@@ -99,9 +114,10 @@ function Comment({id, username, comment, date, time, likes}) {
           <h3>{likes}</h3>
           </div>
           {username === user.name && <div className="comment-edit">
-            <button className="like liked comment-edition" onClick={edition}><i class="bi bi-pencil-square"></i></button>
-            <button className="like liked comment-edition" onClick={deletes}><i class="bi bi-trash3"></i></button>
+            <button className="like liked comment-edition" onClick={()=>{setEdit(true)}}><i class="bi bi-pencil-square"></i></button>
+            <button className="like liked comment-edition" onClick={()=>{setDelete(true)}}><i class="bi bi-trash3"></i></button>
           </div>}
+          {user.role == "admin" && username != user.name && <button className="like liked comment-edition" onClick={()=>{setDelete(true)}}><i class="bi bi-trash3"></i></button>}
         </div>
         {dlt && <div className="dlt">
             <h3>¿Está seguro de que quiere eliminar este comentario?</h3>
