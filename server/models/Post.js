@@ -25,10 +25,12 @@ const postSchema = new mongoose.Schema({
         required:true
     },
     likes:{
-        type:Number
+        type:Number,
+        default : 0
     },
     visits:{
-        type:Number
+        type:Number,
+        default: 0
     },
     comments:{
         type:Array,

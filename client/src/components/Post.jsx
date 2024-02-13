@@ -26,6 +26,7 @@ function Post() {
         //console.log(petition.data)
         if(userId && petition.data != null || "Error"){
           setPost(petition.data)
+          setLike(petition.data.likes > 0) // actualiza el estado de like basado en los likes del post
           //setComments(petition.data.comments)
           async function visited(){
             const visit = await axios.get(`http://localhost:3001/p/${postId}/visit`)
@@ -52,9 +53,19 @@ function Post() {
       comments()
     },[])
 
-    const liked = () => {
-      setLike(true)
+    const liked = async () => {
+      try {
+        await axios.get(`http://localhost:3001/p/${postId}/like`)
+        setLike(true); // Actualiza el estado de "like" a true después de dar like
+        setPost(prevPost => ({
+          ...prevPost,
+          likes :prevPost.likes +1  //incrementa el contador de likes en el estado del post
+        }))
+    } catch (err) {
+        console.log('Error al dar like al post', err);
     }
+}
+    
     
     const no_liked = () => {
       setLike(false)
@@ -84,8 +95,8 @@ function Post() {
                         <button className={like ? "like liked" : "like not-liked"} onClick={like ? no_liked : liked}>{like ? <i class="fa-solid fa-thumbs-up"></i> : <i class="fa-regular fa-thumbs-up"></i>}</button>
                         <p>{post[0].likes}</p>
                       </div>
-                      {user.role == "admin" && // button delete post
-                        <button className="admin-delete-post"></button>}
+                      {/* {user.role == "admin" && // button delete post
+                        <button className="admin-delete-post"></button>} */}
                       <h3>{post[0].visits} {post[0].visits === 1 ? "visit" : "visits"}</h3>
                   </div>
               </section>

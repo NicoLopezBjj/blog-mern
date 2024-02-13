@@ -10,18 +10,36 @@ import { User } from '../../context/User';
 
 function Comment({id, username, comment, date, time, likes}) {
   const [like, setLike] = useState(false)
+  const [comentario,setComments] = useState([])
   const [editedComment, setEditedComment] = useState("")
   const [edit, setEdit] = useState(false)
   const [dlt, setDelete] = useState(false)
   const {user} = useContext(User)
-  const {userId, postId} = useParams()
+  const {userId, postId, commentId} = useParams()
 
-  const liked = () => {
-    setLike(true)
-  }
-  
-  const no_liked = () => {
-    setLike(false)
+    const liked = async () => {
+      const commentId = {id}
+      console.log('come liked front',commentId)
+      try{
+        await axios.get(`http://localhost:3001/p/${postId}/${commentId.id}/like-comment`,{withCredentials:true})
+        setLike(true)
+        setComments(prevComments => ({
+          ...prevComments,
+          likes :prevComments.likes +1
+      }))
+      } catch(e){
+        console.log('error when like comment',e)
+      }
+    }
+    
+  const no_liked = async () => {
+    const commentId = {id}
+    try{
+      await axios.get(`http://localhost:3001/p/${postId}/${commentId.id}/no_like-comment`,{withCredentials:true})
+      setLike(false)
+    } catch(e){
+      console.log('error when removing like from comment',e)
+    }
   }
 
   const edition = () => {
