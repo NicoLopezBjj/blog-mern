@@ -10,6 +10,7 @@ const connectDB = require('./db/connection')
 const strategy = require("./config/passport-jwt")
 const usuariosRoutes = require("./api/routes/usuariosRoutes")
 const postRoutes = require('./api/routes/postRoutes')
+const modRoutes = require('./api/routes/modRoutes')
 
 // Environment Variables
 const DB_URL = process.env.DB_URL
@@ -44,6 +45,7 @@ strategy.executeStrategy(passport) //const.export-func(param:passport dependency
 // Routes
 app.use(usuariosRoutes)
 app.use("/p",postRoutes)
+app.use("/role",modRoutes)
 
 // DB Connection & Port Listen
 const connectDataBase = async () =>{
