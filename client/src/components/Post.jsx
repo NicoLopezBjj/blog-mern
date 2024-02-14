@@ -13,8 +13,8 @@ import Comment from './parts/Comment';
 function Post() {
     const [post, setPost] = useState([])
     const [like, setLike] = useState(false)
-    const [comments, setComments] = useState([])
-    const [comment, setComment] = useState("")
+    const [comments, setComments] = useState([]) //lista de comentarios
+    const [comment, setComment] = useState("") //caja de comentario
     const {user} = useContext(User)
     const {userId, postId} = useParams()
     const navigate = useNavigate()
@@ -26,7 +26,7 @@ function Post() {
         //console.log(petition.data)
         if(userId && petition.data != null || "Error"){
           setPost(petition.data)
-          setLike(petition.data.likes > 0) // actualiza el estado de like basado en los likes del post
+          //setLike(petition.data.likes > 0)  actualiza el estado de like basado en los likes del post
           //setComments(petition.data.comments)
           async function visited(){
             const visit = await axios.get(`http://localhost:3001/p/${postId}/visit`)
@@ -39,9 +39,16 @@ function Post() {
     },[userId,postId])
 
     useEffect(()=>{
-      console.log("aparezco")
-      //visited()
-    },[userId,postId])
+      async function getLike(){
+        const petition = await axios.get(`http://localhost:3001/p/${userId}/${postId}/get-like`)
+        if(petition.data == "found"){
+          setLike(true)
+        }else{
+          setLike(false)
+        }
+      }
+      getLike()
+    },[])
 
     useEffect(()=>{
       async function comments(){
@@ -55,20 +62,31 @@ function Post() {
 
     const liked = async () => {
       try {
-        await axios.get(`http://localhost:3001/p/${postId}/like`)
+        await axios.get(`http://localhost:3001/p/${userId}/${postId}/like`)
         setLike(true); // Actualiza el estado de "like" a true después de dar like
         setPost(prevPost => ({
           ...prevPost,
           likes :prevPost.likes +1  //incrementa el contador de likes en el estado del post
         }))
+        window.location.reload()
     } catch (err) {
         console.log('Error al dar like al post', err);
     }
 }
     
     
-    const no_liked = () => {
-      setLike(false)
+    const no_liked = async () => {
+      try {
+        await axios.get(`http://localhost:3001/p/${userId}/${postId}/no-like`)
+        setLike(false); // Actualiza el estado de "like" a true después de dar like
+        setPost(prevPost => ({
+          ...prevPost,
+          likes :prevPost.likes -1  //incrementa el contador de likes en el estado del post
+        }))
+        window.location.reload()
+      } catch (err) {
+        console.log('Error al dar like al post', err);
+      }
     }
 
     const sendComment = async(e) => {

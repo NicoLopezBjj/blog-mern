@@ -1,5 +1,7 @@
-const Post = require('../../models/Post')
 const mongoose = require("mongoose")
+const Post = require('../../models/Post')
+const Like = require('../../models/Like')
+const CommentLike = require('../../models/CommentLike')
 
 // OBTENER TODOS LOS POSTS DE UN USUARIO
 const getUserPosts = async (req,res) => {
@@ -73,10 +75,11 @@ const visit = async(req, res) => {
 // LIKE
 
 const like = async(req, res) => {
-    const postId = req.params.postId
+    const {userId, postId} = req.params
     try{
         const post = await Post.findById(postId)
         post.likes ++
+        await Like.create({userId:userId,postId:postId})
         const likedPost = await post.save()
         res.status(200).json(likedPost)
     }catch(err){
@@ -88,11 +91,17 @@ const like = async(req, res) => {
 // QUITAR LIKE
 
 const no_like = async(req, res) => {
-    const postId = req.params.postId
+    const {userId, postId} = req.params
     try{
         const post = await Post.findById(postId)
         if(post.likes > 0){
             post.likes --
+            await Like.findOneAndDelete({
+                $and:[
+                    {userId: userId},
+                    {postId: postId}
+                ]
+            })
             const noLikedPost = await post.save()
             res.status(200).json(noLikedPost)
         }
@@ -165,8 +174,7 @@ const edit_comment = async(req,res)=>{
 }
 
 const like_comment = async(req,res)=>{
-    const postId = req.params.postId
-    const commentId = req.params.commentId
+    const {userId, postId, commentId} = req.params
     console.log('come for like_comment i am post',postId)
     console.log('come for like_comment i am comment',commentId)
 
@@ -181,6 +189,8 @@ const like_comment = async(req,res)=>{
         }
         comment.likes ++
         const likedComment = await Post.findByIdAndUpdate(postId, { 'comments.$[elem].likes': comment.likes }, { arrayFilters: [{ 'elem._id': commentId }], new: true });
+        await CommentLike.create({userId:userId, postId:postId, commentId:commentId})
+        post.markModified("comments")
         await post.save()
         res.status(200).json(likedComment)
     } catch (e){
@@ -189,8 +199,7 @@ const like_comment = async(req,res)=>{
 }
 
 const no_like_comment = async(req,res)=>{
-    const postId = req.params.postId
-    const commentId = req.params.commentId
+    const {userId, postId, commentId} = req.params
     try{
         const post = await Post.findById(postId)
         if(!post){
@@ -201,6 +210,13 @@ const no_like_comment = async(req,res)=>{
             return res.status(404).json({ error : 'the comment does not exist'})
         }
         comment.likes--
+        await CommentLike.findOneAndDelete({
+            $and:[
+                {userId:userId},
+                {postId:postId},
+                {commentId:commentId}
+            ]
+        })
         const noLikedComment = await post.save()
         res.status(200).json(noLikedComment)
     } catch (e){
