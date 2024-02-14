@@ -25,6 +25,10 @@ const userSchema = new mongoose.Schema({
         type:String,
         required:true,
         default:'/blank_user.png'
+    },
+    code:{
+        type:String,
+        sparse:true
     }
 })
 
@@ -43,6 +47,17 @@ userSchema.post('save',function(doc, next){
     console.log("USER:", doc)
     next()
 })
+
+// ACTUALIZAR EL ROL DEL USUARIO A MOD
+userSchema.methods.verifyAndSetRole = async function (code) {
+    if (this.code === code) {
+        this.role = 'mod'
+        await this.save()
+        return true //Cambio de rol exitoso
+    }else {
+        return false //Codigo de confirmacion incorrecto
+    }
+}
 
 const Usuario = mongoose.model('Usuario',userSchema)
 
