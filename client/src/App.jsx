@@ -14,6 +14,7 @@ import Friend from './components/Friend';
 import AddPost from './components/AddPost';
 import Post from './components/Post';
 import ModRequest from './components/ModRequest';
+import Requests from './components/admin/Requests'
 import NoPage from './components/NoPage';
 
 function App() {
@@ -49,6 +50,7 @@ function App() {
               <Route path="/add" element={<AddPost/>}></Route>
               <Route path="/post/:userId/:postId" element={<Post/>}></Route>
               <Route path="/mod" element={<ModRequest/>}></Route>
+              <Route path="/mod/requests" element={<Requests/>}></Route>
               <Route path="*" element={<NoPage/>}></Route>
             </Routes>
           </BrowserRouter>
