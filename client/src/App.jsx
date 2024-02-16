@@ -10,6 +10,7 @@ import SignIn from './components/SignIn';
 import SignUp from './components/SignUp';
 import Dashboard from './components/Dashboard';
 import Profile from './components/Profile';
+import Friend from './components/Friend';
 import AddPost from './components/AddPost';
 import Post from './components/Post';
 import ModRequest from './components/ModRequest';
@@ -44,6 +45,7 @@ function App() {
               <Route path="/signup" element={<SignUp/>}></Route>
               <Route path="/dashboard" element={<Dashboard/>}></Route>
               <Route path="/profile" element={<Profile/>}></Route>
+              <Route path="/user/:userId" element={<Friend/>}></Route>
               <Route path="/add" element={<AddPost/>}></Route>
               <Route path="/post/:userId/:postId" element={<Post/>}></Route>
               <Route path="/mod" element={<ModRequest/>}></Route>

@@ -6,9 +6,9 @@ import '../App.css';
 import './css/clear.css'
 import './css/dark.css'
 import Header from './parts/Header';
-import { useNavigate, useParams } from 'react-router-dom';
-import { User } from '../context/User';
 import Comment from './parts/Comment';
+import { Link, useNavigate, useParams } from 'react-router-dom';
+import { User } from '../context/User';
 
 function Post() {
     const [post, setPost] = useState([])
@@ -17,8 +17,8 @@ function Post() {
     const [comment, setComment] = useState("") //caja de comentario
     const {user} = useContext(User)
     const {userId, postId} = useParams()
+    let userLink = `/user/`
     const navigate = useNavigate()
-    //si el usuario es admin, tiene la opción de editar o eliminar posts.
 
     useEffect(()=>{
       async function getPost(){
@@ -74,7 +74,6 @@ function Post() {
     }
 }
     
-    
     const no_liked = async () => {
       try {
         await axios.get(`http://localhost:3001/p/${userId}/${postId}/no-like`)
@@ -96,6 +95,11 @@ function Post() {
       .catch(err => {console.log("ACe => ", err)})
     }
 
+    const postUsername = (param)=>{
+      userLink = `/user/${param}`
+      return userLink
+    }
+
   return (
     <>
         <Header/>
@@ -105,7 +109,7 @@ function Post() {
               <section className="post">
                   <div className="post-header">
                     <h1>{post[0].title}</h1>
-                    <h1>{post[0].username} | {post[0].date.slice(0,10)}, <span>{post[0].date.slice(11,16)}</span></h1>
+                    <h1><Link to={post != [] && post[0].username === user.name ? "/profile" : postUsername(post[0].user)} className="strhov underline">{post[0].username}</Link> | {post[0].date.slice(0,10)}, <span>{post[0].date.slice(11,16)}</span></h1>
                   </div>
                   <p className="post-body">{post[0].body}</p>
                   <div className="post-buttons">

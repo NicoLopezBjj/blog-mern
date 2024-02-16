@@ -1,4 +1,5 @@
 const Usuario = require("../../models/Usuario")
+const Post = require("../../models/Post")
 const bcrypt = require("bcrypt")
 const passport = require("passport")
 const jwt = require ('jsonwebtoken')
@@ -29,7 +30,7 @@ const signup_post = async(req,res)=>{
 
 const signin_get = async(req,res)=>{
     console.log("-1", req.isAuthenticated())
-    console.log("User en el signin_get", req.user)
+    //console.log("User en el signin_get", req.user)
     res.json({ message: 'Ruta protegida accedida con éxito' });
 }
 
@@ -79,7 +80,38 @@ const get_user = (req, res)=>{
 }
 
 const update_profile = async(req, res)=>{
-    
+    try{
+        const { id, newName } = req.body
+        const update = await Usuario.findByIdAndUpdate(id, {name: newName}, {new:true})
+        console.log(update)
+        if(update){
+            await Post.updateMany({user:id}, {$set:{username: newName}})
+            res.json({state:"ok",user:update})
+        }else{
+            res.json("not ok")
+        }
+    }catch(err){
+        console.log(err)
+        res.json(err)
+    }
+}
+
+const auth = (req,res)=>{
+    const isAuth = req.isAuthenticated()
+    res.json({situation:isAuth})
+}
+
+const sign_out = (req,res)=>{
+    console.log("2", req.isAuthenticated())
+    user = null
+    req.logOut(function(err){
+        if(err){
+            return res.status(500).json({message:"Error en el logout", error:err})
+        }
+        console.log("no hay usuario", user, req.user)
+        console.log("3", req.isAuthenticated())
+        res.json("Logged out")
+    })
 }
 
 // const signin_post = (req,res, next)=>{
@@ -131,23 +163,6 @@ const update_profile = async(req, res)=>{
 //     // }
 // }
 
-const auth = (req,res)=>{
-    const isAuth = req.isAuthenticated()
-    res.json({situation:isAuth})
-}
-
-const sign_out = (req,res)=>{
-    console.log("2", req.isAuthenticated())
-    user = null
-    req.logOut(function(err){
-        if(err){
-            return res.status(500).json({message:"Error en el logout", error:err})
-        }
-        console.log("no hay usuario", user, req.user)
-        console.log("3", req.isAuthenticated())
-        res.json("Logged out")
-    })
-}
 
 module.exports = {
     signup_post,

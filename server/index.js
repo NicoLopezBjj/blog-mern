@@ -9,6 +9,7 @@ require("dotenv").config()
 const connectDB = require('./db/connection')
 const strategy = require("./config/passport-jwt")
 const usuariosRoutes = require("./api/routes/usuariosRoutes")
+const friendRoutes = require("./api/routes/friendRoutes")
 const postRoutes = require('./api/routes/postRoutes')
 const modRoutes = require('./api/routes/modRoutes')
 
@@ -44,6 +45,7 @@ strategy.executeStrategy(passport) //const.export-func(param:passport dependency
 
 // Routes
 app.use(usuariosRoutes)
+app.use("/u",friendRoutes)
 app.use("/p",postRoutes)
 app.use("/role",modRoutes)
 

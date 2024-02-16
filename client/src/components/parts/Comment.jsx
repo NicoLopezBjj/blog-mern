@@ -57,14 +57,6 @@ function Comment({id, username, comment, date, time, likes}) {
     }
   }
 
-  // const edition = () => {
-  //   setEdit(true)
-  // }
-
-  // const deletes = () => {
-  //   setDelete(true)
-  // }
-
   const exit = () => {
     if(edit){
       setEdit(false)
@@ -97,7 +89,9 @@ function Comment({id, username, comment, date, time, likes}) {
           <button className="like not-liked close" onClick={exit}><i class="bi bi-x-lg"></i></button>
         </div>
         <form action="" className="comment-form" onSubmit={editComment}>
-          <textarea name="" id="" cols="30" rows="10" className="add-textarea comment-textarea" style={{marginTop:"1em",marginLeft:"1em", width:"97%"}} value={editedComment} onChange={(e)=>{setEditedComment(e.target.value)}}></textarea>
+          <textarea name="" id="" cols="30" rows="10" className="add-textarea comment-textarea" 
+          style={{marginTop:"1em",marginLeft:"1em", width:"97%"}} value={editedComment} onChange={(e)=>{setEditedComment(e.target.value)}}
+          placeholder={comment}></textarea>
           <button className="add-btn signin-btn">Editar comentario</button>
         </form>
       </div>

@@ -1,4 +1,4 @@
-//página para miniaturas de post en dashboard
+//página para miniaturas de post en perfiles
 
 import { useContext, useState } from 'react';
 import '../../App.css';
@@ -7,15 +7,13 @@ import '../css/dark.css'
 import { Link } from 'react-router-dom';
 import { User } from '../../context/User';
 
-function PostThumbnail({user_id, title, username, date, body, likes, visits, comments}) {
-  const {user} = useContext(User)
-  const userLink = `/user/${user_id}`
+function PostThumbnail_onProfile({title, username, date, body, likes, visits, comments}) {
 
   return (
     <div className="thumbnail">
         <div className="thumbnail-header">
           <h1>{title}</h1>
-          <h1><Link to={username === user.name ? "/profile" : userLink} className="strhov underline">{username}</Link> | {date}</h1>
+          <h1>{username} | {date}</h1>
         </div>
         <h3 className="thumbnail-body">{body}</h3>
         <div className="thumbnail-footer">
@@ -27,4 +25,4 @@ function PostThumbnail({user_id, title, username, date, body, likes, visits, com
   );
 }
 
-export default PostThumbnail;
+export default PostThumbnail_onProfile;
