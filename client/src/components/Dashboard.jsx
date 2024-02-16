@@ -50,6 +50,7 @@ function Dashboard() {
                   posts.map((p)=>{
                     const post = `/post/${p.user}/${p._id}`
                     return (<Link to={post}><PostThumbnail key={p._id}
+                        user_id={p.user}
                         title={p.title} 
                         username={p.username} 
                         date={p.date.slice(0, 10)} 

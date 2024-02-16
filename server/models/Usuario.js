@@ -26,9 +26,14 @@ const userSchema = new mongoose.Schema({
         required:true,
         default:'/blank_user.png'
     },
-    code:{
+    modCode:{
         type:String,
+        unique:true,
         sparse:true
+    },
+    friends:{
+        type:Array,
+        default:[]
     }
 })
 

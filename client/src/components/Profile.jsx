@@ -6,18 +6,19 @@ import '../App.css';
 import './css/clear.css'
 import './css/dark.css'
 import Header from './parts/Header';
-import PostThumbnail from './parts/PostThumbnail';
+import PostThumbnail_onProfile from './parts/PostThumbnail_onProfile';
 import { DarkMode } from '../context/DarkMode';
 import { User } from '../context/User';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 function Profile() {
-  const {user} = useContext(User)
+  const {user, setUser} = useContext(User)
   const {dark} = useContext(DarkMode)
   const [edit, setEdit] = useState(false)
   const [nombre,setNombre] = useState("")
-  const [imagen,setImagen] = useState("")
+  const [error,setError] = useState("")
   const [myPosts, setMyPosts] = useState([])
+  const navigate = useNavigate()
 
   useEffect(()=>{
     console.log("get my posts")
@@ -32,8 +33,28 @@ function Profile() {
     }
   },[user])
 
-  const update = () => { 
+  const update = async(e) => { 
+    e.preventDefault()
+    if(nombre == ""){
+      setError("Por favor rellene el campo.")
+    }else{
+      try{
+        const newProfile = await axios.post("http://localhost:3001/update", {id: user._id, newName: nombre}, {withCredentials:true})
+        if(newProfile.data.state === "ok"){
+          setError("")
+          setUser(newProfile.data.user)
+          //setTimeout(()=>{navigate("/dashboard")}, 1000)
+        }else{
+          console.log(newProfile.data)
+        }
+      }catch(err){
+        console.log(err)
+      }
+    }
+  }
 
+  function updateUser (updated){
+    setUser(updated)
   }
 
   return (
@@ -52,7 +73,9 @@ function Profile() {
                 <button className="profile-btn edit-profile-name bi bi-pencil-square" onClick={()=>{setEdit(!edit)}}></button>
               </div>
               <div className="profile-align">
+                <p>{error}</p>
                 <div className="profile-role">
+                  <h3>En blog mern puedes convertirte en un moderador.</h3>
                   {user && user.role == "user" ? <Link className="profile-request underline" to="/mod">Solicitar ser mod</Link> : <Link className="profile-request underline" to="/mod">Solicitar baja de mod</Link>}
                 </div>
               </div>
@@ -64,7 +87,7 @@ function Profile() {
             ? 
             myPosts.map((p)=>{
               const post = `/post/${p.user}/${p._id}`
-              return (<Link to={post}><PostThumbnail key={p._id}
+              return (<Link to={post}><PostThumbnail_onProfile key={p._id}
                   title={p.title} 
                   username={p.username} 
                   date={p.date.slice(0, 10)} 

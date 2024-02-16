@@ -47,6 +47,14 @@ function Header() {
     getUser()
   },[]) //user talvez en dependencias? => Al final No!
 
+  useEffect(()=>{
+    if(user){
+      localStorage.setItem("user",JSON.stringify(user))
+    }else{
+      localStorage.removeItem("user")
+    }
+  },[user])
+
   return (
     <header className={dark ? "dark-header" : "clear-header"}>
         <h1>blog mern.</h1>

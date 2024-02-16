@@ -15,4 +15,6 @@ router.get("/auth", controllers.auth)
 
 router.get("/signout", controllers.sign_out)
 
+router.post("/update", controllers.update_profile)
+
 module.exports = router
