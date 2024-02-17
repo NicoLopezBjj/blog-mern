@@ -55,7 +55,7 @@ userSchema.post('save',function(doc, next){
 
 // ACTUALIZAR EL ROL DEL USUARIO A MOD
 userSchema.methods.verifyAndSetRole = async function (code) {
-    if (this.code === code) {
+    if (this.modCode === code) {
         this.role = 'mod'
         await this.save()
         return true //Cambio de rol exitoso

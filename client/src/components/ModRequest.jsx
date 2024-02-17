@@ -38,7 +38,7 @@ function ModRequest() {
                   value={body} onChange={(e)=>{setBody(e.target.value)}} ></textarea>
               </div>
               <div className="add-post-form-button">
-                <button className="add-btn signin-btn">Enviar solicitud</button>
+                <Link to="/mod/requests"><button className="add-btn signin-btn">Enviar solicitud</button></Link>
                 <Link to="/dashboard"><button className="add-btn signup-btn">Cancelar</button></Link>
               </div>
             </form>
