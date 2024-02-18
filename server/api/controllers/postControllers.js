@@ -1,4 +1,5 @@
 const mongoose = require("mongoose")
+const Usuario = require('../../models/Usuario')
 const Post = require('../../models/Post')
 const Like = require('../../models/Like')
 const CommentLike = require('../../models/CommentLike')
@@ -129,11 +130,12 @@ const get_comments = async(req,res)=>{
 
 const add_comment = async(req,res)=>{
     const postId = req.params.postId
-    const {username, comment} = req.body
+    const {id, username, comment} = req.body
     try{
         const post = await Post.findById(postId)
         post.comments.push({
             _id: new mongoose.Types.ObjectId(),
+            user_id:id,
             username:username,
             comment:comment,
             date: new Date,

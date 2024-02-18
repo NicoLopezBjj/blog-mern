@@ -15,6 +15,7 @@ function Header() {
 
   const LogOut = async () => {
     localStorage.removeItem("token")
+    localStorage.removeItem("user")
     setUser(null)
     console.log("usuario en logout front", user)
     const out = await axios.get("http://localhost:3001/signout")
@@ -34,7 +35,14 @@ function Header() {
           const response = await axios.get("http://localhost:3001/user",{withCredentials:true, headers:{'Authorization':`Bearer ${token}`}})
           console.log(response)
           if(token && response.data.user != null){
-            setUser(response.data.user)
+            console.log("Pasé")
+            const stored = localStorage.getItem("user")
+            if(stored){
+              setUser(JSON.parse(stored))
+            }else{
+              localStorage.setItem("user", JSON.stringify(response.data.user))
+              setUser(response.data.user)
+            }
           }
         }
       }catch(err){
@@ -46,14 +54,6 @@ function Header() {
     }
     getUser()
   },[]) //user talvez en dependencias? => Al final No!
-
-  useEffect(()=>{
-    if(user){
-      localStorage.setItem("user",JSON.stringify(user))
-    }else{
-      localStorage.removeItem("user")
-    }
-  },[user])
 
   return (
     <header className={dark ? "dark-header" : "clear-header"}>

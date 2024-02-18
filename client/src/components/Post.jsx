@@ -90,7 +90,7 @@ function Post() {
 
     const sendComment = async(e) => {
       e.preventDefault()
-      await axios.post(`http://localhost:3001/p/${postId}/add-comment`, {username:user.name, comment:comment}, {withCredentials: true})
+      await axios.post(`http://localhost:3001/p/${postId}/add-comment`, {id:user._id, username:user.name, comment:comment}, {withCredentials: true})
       .then(resp => {console.log("ACr => ", resp); setTimeout(()=>{window.location.reload()}, 100)})
       .catch(err => {console.log("ACe => ", err)})
     }
@@ -128,7 +128,7 @@ function Post() {
                 <div className="comment-list">
                   {comments.length > 0 ? 
                     comments.map((c)=>{
-                      return <Comment key={c._id} id={c._id} username={c.username} comment={c.comment} date={c.date.slice(0,10)} time={c.date.slice(11,16)} likes={c.likes}/>
+                      return <Comment key={c._id} id={c._id} user_id={c.user_id} username={c.username} comment={c.comment} date={c.date.slice(0,10)} time={c.date.slice(11,16)} likes={c.likes}/>
                     })
                   : 
                     <h1>Todavía no hay comentarios. ¡Sé el primero en dejar un mensaje!</h1>
