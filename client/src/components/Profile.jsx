@@ -19,7 +19,8 @@ function Profile() {
   const [error,setError] = useState("")
   const [myPosts, setMyPosts] = useState([])
   const navigate = useNavigate()
-
+const storedbef = localStorage.getItem("user")
+//console.log(JSON.parse(storedbef))
   useEffect(()=>{
     console.log("get my posts")
     if(user){
@@ -39,11 +40,12 @@ function Profile() {
       setError("Por favor rellene el campo.")
     }else{
       try{
-        const newProfile = await axios.post("http://localhost:3001/update", {id: user._id, newName: nombre}, {withCredentials:true})
+        const newProfile = await axios.post("http://localhost:3001/update", {id: user._id, previousName: user.name, newName: nombre}, {withCredentials:true})
         if(newProfile.data.state === "ok"){
+          const newUser = newProfile.data.user
           setError("")
-          setUser(newProfile.data.user)
-          //setTimeout(()=>{navigate("/dashboard")}, 1000)
+          localStorage.setItem("user", JSON.stringify(newUser))
+          setTimeout(()=>{window.location.reload()}, 100)
         }else{
           console.log(newProfile.data)
         }

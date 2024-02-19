@@ -81,11 +81,16 @@ const get_user = (req, res)=>{
 
 const update_profile = async(req, res)=>{
     try{
-        const { id, newName } = req.body
+        const { id, previousName, newName } = req.body
+        console.log(id, previousName, newName)
         const update = await Usuario.findByIdAndUpdate(id, {name: newName}, {new:true})
         console.log(update)
         if(update){
             await Post.updateMany({user:id}, {$set:{username: newName}})
+            await Post.updateMany(
+                { user: id, "comments.username": previousName }, 
+                { $set: { "comments.$.username": newName } }
+            ); //que el nuevo nombre también se aplique a los comentarios. Importante poner la $ en el medio ya que con eso solo aplica a las posiciones en donde se cumpla lo anterior => en donde esté previousName
             res.json({state:"ok",user:update})
         }else{
             res.json("not ok")

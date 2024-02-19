@@ -5,10 +5,10 @@ import axios from 'axios';
 import '../../App.css';
 import '../css/clear.css'
 import '../css/dark.css'
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { User } from '../../context/User';
 
-function Comment({id, username, comment, date, time, likes}) {
+function Comment({id, user_id, username, comment, date, time, likes}) {
   const [like, setLike] = useState(false)
   const [comentario,setComments] = useState([])
   const [editedComment, setEditedComment] = useState("")
@@ -16,9 +16,11 @@ function Comment({id, username, comment, date, time, likes}) {
   const [dlt, setDelete] = useState(false)
   const {user} = useContext(User)
   const {userId, postId, commentId} = useParams()
+  const userLink = `/user/${user_id}`
 
   useEffect(()=>{
     console.log("lo hace!!!")
+
     async function getCommentLike(){
       const petition = await axios.get(`http://localhost:3001/p/${userId}/${postId}/${commentId}/get-c-like`)
       if(petition.data == "found"){
@@ -98,7 +100,7 @@ function Comment({id, username, comment, date, time, likes}) {
       : 
       <div className="comment">
         <div className="thumbnail-header">
-          <h1>{username}</h1>
+          <h1><Link to={username === user.name ? "/profile" : userLink} className="strhov underline">{username}</Link></h1>
           <h1>{date}, <span>{time}</span></h1>
         </div>
         <h3 className="comment-body">{comment}</h3>
