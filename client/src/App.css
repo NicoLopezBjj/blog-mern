@@ -12,7 +12,7 @@
   --drk:#7a1e14;
 }
 
-header, button, input, textarea, .sign, .dashboard, .add-post, .post, .comments, .prof{
+header, button, input, textarea, .sign, .dashboard, .userboard, .add-post, .post, .comments, .prof{
   font-family:'Work Sans', sans-serif;
 }
 
@@ -174,7 +174,7 @@ header h1{
   box-shadow:0 0 10px black;
 }
 
-.bg-1, .bg-2, .bg-3, .bg-4{
+.bg-1, .bg-2, .bg-3, .bg-4, .bg-5{
   background-size:cover;
   background-position:center;
   background-repeat:no-repeat;
@@ -200,6 +200,10 @@ header h1{
 
 .bg-4{
   background-image: url("../public/dash.svg");
+}
+
+.bg-5{
+  background-image: url("../public/mod.svg");
 }
 
 .prof{
@@ -277,14 +281,21 @@ header h1{
   flex-direction:column;
 }
 
-.dashboard, .profile-posts{
+.dashboard, .profile-posts, .userboard{
   width:90%;
   margin:2em auto;
-  padding:3em 0;
   border-radius:0.5rem;
   display:flex;
   flex-direction:column;
   justify-content:center;
+}
+
+.dashboard, .profile-posts{
+  padding:3em 0;
+}
+
+.userboard{
+  padding:0.5em 0;
 }
 
 .dashboard-header{
@@ -365,7 +376,7 @@ header h1{
 }
 
 .post{
-  border:2px solid var(--str);
+  border:3px solid var(--str);
 }
 
 .post-header{
@@ -507,6 +518,7 @@ header h1{
 
 .profile-role{
   justify-content:center;
+  margin-bottom:1em;
 }
 
 .profile-request{
@@ -519,4 +531,10 @@ header h1{
   margin:0.6em 0 1em 0;
   padding:0 3.5em;
   justify-content:space-between;
+}
+
+.request-text{
+  font-size:1.1rem;
+  font-weight:bold;
+  margin-bottom:1.5em;
 }

@@ -1,3 +1,7 @@
+.clear-bg{
+    background-color:white;
+  }
+
 .clear-sign-form{
     background-color:white;
     border:5px solid var(--strhov);

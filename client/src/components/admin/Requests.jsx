@@ -1,36 +1,30 @@
 //página para ver las requests de los usuarios que quieren ser mod
 
-import { useState, useContext } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import '../css/clear.css';
 import '../css/dark.css'
 import { User } from '../../context/User';
 import { DarkMode } from '../../context/DarkMode';
 import Header from '../../components/parts/Header';
+import RequestThumbnail from './admin-parts/RequestThumbnail';
 import { Link, useNavigate, useParams} from 'react-router-dom';
 
 function Requests (){
     const {user} = useContext(User)
     const {dark} = useContext(DarkMode)
     const {userId} = useParams()
+    const [requests, setRequests] = useState([])
 
-
-    const acceptRequest = async () => {
-        try {
-            console.log({ userId: user._id })
-            const response = await axios.post(`http://localhost:3001/role/${userId}/code-generate-send-email`,{userId : user._id});
-            console.log('come front acceptRequest', user)
-            console.log('come front',userId)
-            if (response.data.success) {
-                alert("Solicitud aceptada correctamente. Se ha enviado un correo electrónico al usuario con el código de confirmación.");
-            } else {
-                alert("Error al aceptar la solicitud. Por favor, intenta de nuevo más tarde.");
+    useEffect(()=>{
+        async function getRequests(){
+            const petition = await axios.get("http://localhost:3001/role/get-reqs")
+            if(petition){
+                setRequests(petition.data)
             }
-        } catch (error) {
-            console.error("Error:", error);
-            alert("Ocurrió un error. Por favor, intenta de nuevo más tarde.");
         }
-    };
+        getRequests()
+    },[])
 
     // const acceptRequest = async(e)=> {
     //     try{
@@ -38,18 +32,39 @@ function Requests (){
     //     }
     // }
 
+    /*
+        requests.map((r)=>{
+            const requestLink = `/mod/request/${r.userId}`
+            return <Link to={requestLink}><RequestThumbnail mail={r.mail} /></Link>
+        })
+    */
+
 
     return (
-        <div className="bg-1">
-            <Header/>
-            <div className='ms-4'>
-                <h4>{user.email}</h4>
-                <h4>{user.name}</h4>
-                <form onSubmit={(e) => { e.preventDefault(); acceptRequest(); }}>
-                    <button className="add-btn signin-btn">Aceptar solicitud</button>
-                </form>
+        <div className="bg-5">
+        <Header/>
+        <section className={dark ? "userboard dark-dashboard" : "userboard clear-dashboard"}>
+            <div className="dashboard-header">
+              <h1>Lista de usuarios</h1>
+              <Link to="/mod/users"><button className="header-btn signup-btn">Administrar</button></Link>
             </div>
-        </div>
+        </section>
+        <section className={dark ? "dashboard dark-dashboard" : "dashboard clear-dashboard"}>
+            <div className="dashboard-header">
+              <h1>Solicitudes</h1>
+            </div>
+            <div className="posts">
+                {requests.length > 0 ?  
+                    requests.map((r)=>{
+                        const requestLink = `/mod/request/${r.userId}`
+                        return <Link to={requestLink}><RequestThumbnail mail={r.mail} /></Link>
+                    })
+                : 
+                    <h1 style={{fontSize:"2rem",marginTop:"1em", marginLeft:"1.3em"}}>En este momento no hay ninguna solicitud.</h1>
+                }
+            </div>
+        </section>
+    </div>
     )
 }
 
