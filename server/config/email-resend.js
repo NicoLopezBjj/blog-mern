@@ -8,9 +8,10 @@ const resend = new Resend(KEY_EMAIL_RESEND)
 
 async function sendEmailConfirmation(user,codeConfirmation){
   try{
+    console.log('from RESEND', user)
     const { data, error } = await resend.emails.send({
         from: 'Acme <onboarding@resend.dev>',
-        to: 'devs.fullstack2023@gmail.com',
+        to: `${user.email}`,
         subject: 'Confirmation code for Moderator',
         html: `<p>Hola ${user.name},</p><p>Utiliza el siguiente código para confirmar tu solicitud de ser moderador en nuestro blog: <strong>${codeConfirmation}</strong></p>`,
       });
