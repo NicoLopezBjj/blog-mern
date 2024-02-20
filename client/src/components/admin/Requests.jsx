@@ -7,16 +7,20 @@ import '../css/dark.css'
 import { User } from '../../context/User';
 import { DarkMode } from '../../context/DarkMode';
 import Header from '../../components/parts/Header';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useParams} from 'react-router-dom';
 
 function Requests (){
     const {user} = useContext(User)
     const {dark} = useContext(DarkMode)
+    const {userId} = useParams()
 
 
     const acceptRequest = async () => {
         try {
-            const response = await axios.post(`http://localhost:3001/role/${user.id}/code-generate-send-email`);
+            console.log({ userId: user._id })
+            const response = await axios.post(`http://localhost:3001/role/${userId}/code-generate-send-email`,{userId : user._id});
+            console.log('come front acceptRequest', user)
+            console.log('come front',userId)
             if (response.data.success) {
                 alert("Solicitud aceptada correctamente. Se ha enviado un correo electrónico al usuario con el código de confirmación.");
             } else {
