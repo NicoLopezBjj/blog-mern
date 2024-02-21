@@ -47,24 +47,11 @@ const acceptRequest = async (req,res)=>{
         console.log('i am ID from front', userId)
         const user = await Usuario.findById(userId)
         console.log('come front back acceptRequest',user)
-        const code = randomString.generate(7)
-        await sendEmailConfirmation(user,code)
+        const codeConfirmation = randomString.generate(7)
+        await sendEmail(user,codeConfirmation)
         res.json({success : true})
     } catch(e){
         console.log('error when generate code',e)
-    }
-}
-
-const rejectRequest = async(req,res)=>{
-    const {userId} = req.params
-    //const userObjectId = new mongoose.Types.ObjectId(userId)
-    //console.log("USER OBJECT ID USER OBJECT ID USER OBJECT ID USER OBJECT ID USER OBJECT ID", userObjectId)
-    try{
-        await Request.findOneAndDelete({userId:userId})
-        res.json("del")
-    }catch(err){
-        console.log(err)
-        res.json(err)
     }
 }
 
