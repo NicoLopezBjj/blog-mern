@@ -2,7 +2,7 @@ const randomString = require('randomstring')
 const mongoose = require('mongoose')
 const Usuario = require('../../models/Usuario')
 const Request = require('../../models/Request')
-const sendEmailConfirmation = require('../../config/email-resend')
+const sendEmail = require('../../config/nodemailer')
 
 // USER MODERATION
 
@@ -55,14 +55,6 @@ const acceptRequest = async (req,res)=>{
     }
 }
 
-// const get_code = async(req, res)=>{
-//     const userId = req.params
-//     const user = Usuario.findById(userId)
-//     const code = randomString.generate(7)
-//     console.log('come from get_code and i am code :', code)
-//     res.json({user,code})
-// }
-
 const verify_code = async (req, res)=>{
     const { code } = req.body
     const { userId } = req.params
@@ -79,6 +71,19 @@ const verify_code = async (req, res)=>{
         }
     }catch(e){
         console.log('error when comparing codes',e)
+    }
+}
+
+const rejectRequest = async(req,res)=>{
+    const {userId} = req.params
+    //const userObjectId = new mongoose.Types.ObjectId(userId)
+    //console.log("USER OBJECT ID USER OBJECT ID USER OBJECT ID USER OBJECT ID USER OBJECT ID", userObjectId)
+    try{
+        await Request.findOneAndDelete({userId:userId})
+        res.json("del")
+    }catch(err){
+        console.log(err)
+        res.json(err)
     }
 }
 
