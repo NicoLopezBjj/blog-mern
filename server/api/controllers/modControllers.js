@@ -1,6 +1,7 @@
 const randomString = require('randomstring')
 const Usuario = require('../../models/Usuario')
-const sendEmailConfirmation = require('../../config/email-resend')
+// const sendEmailConfirmation = require('../../config/email-resend')
+const sendEmail = require('../../config/nodemailer')
 
 
 const send_request = async(req, res)=>{
@@ -13,13 +14,27 @@ const acceptRequest = async (req,res)=>{
         console.log('i am ID from front', userId)
         const user = await Usuario.findById(userId)
         console.log('come front back acceptRequest',user)
-        const code = randomString.generate(7)
-        await sendEmailConfirmation(user,code)
+        const codeConfirmation = randomString.generate(7)
+        await sendEmail(user,codeConfirmation)
         res.json({success : true})
     } catch(e){
         console.log('error when generate code',e)
     }
 }
+
+// const acceptRequest = async (req,res)=>{
+//     const {userId} = req.body
+//     try{
+//         console.log('i am ID from front', userId)
+//         const user = await Usuario.findById(userId)
+//         console.log('come front back acceptRequest',user)
+//         const code = randomString.generate(7)
+//         await sendEmailConfirmation(user,code)
+//         res.json({success : true})
+//     } catch(e){
+//         console.log('error when generate code',e)
+//     }
+// }
 
 // const get_code = async(req, res)=>{
 //     const userId = req.params
