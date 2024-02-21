@@ -1,10 +1,44 @@
 const randomString = require('randomstring')
+const mongoose = require('mongoose')
 const Usuario = require('../../models/Usuario')
+const Request = require('../../models/Request')
 const sendEmailConfirmation = require('../../config/email-resend')
 
+// USER MODERATION
 
-const send_request = async(req, res)=>{
+const get_all_users = async(req, res)=>{
     
+}
+
+const ban_profile = async(req, res)=>{
+
+}
+
+// REQUESTS
+
+const get_requests = async(req,res)=>{
+    const reqs = await Request.find({})
+    res.json(reqs)
+}
+
+const get_request = async(req,res)=>{
+    const {userId} = req.params
+    const requested = await Request.findOne({userId:userId})
+    if(requested){
+        res.json(requested)
+    }else{
+        res.json("Error")
+    }
+}
+
+const sent_request = async(req, res)=>{
+    try{
+        const {id, mail, body} = req.body
+        await Request.create({mail:mail, userId:id, body:body})
+        res.json("done")
+    }catch(err){
+        console.log(err)
+    }
 }
 
 const acceptRequest = async (req,res)=>{
@@ -18,6 +52,19 @@ const acceptRequest = async (req,res)=>{
         res.json({success : true})
     } catch(e){
         console.log('error when generate code',e)
+    }
+}
+
+const rejectRequest = async(req,res)=>{
+    const {userId} = req.params
+    //const userObjectId = new mongoose.Types.ObjectId(userId)
+    //console.log("USER OBJECT ID USER OBJECT ID USER OBJECT ID USER OBJECT ID USER OBJECT ID", userObjectId)
+    try{
+        await Request.findOneAndDelete({userId:userId})
+        res.json("del")
+    }catch(err){
+        console.log(err)
+        res.json(err)
     }
 }
 
@@ -48,12 +95,11 @@ const verify_code = async (req, res)=>{
     }
 }
 
-const get_all_users = async(req, res)=>{
-    
+module.exports = {
+    get_requests,
+    get_request,
+    sent_request, 
+    acceptRequest,
+    rejectRequest,
+    verify_code
 }
-
-const delete_profile = async(req, res)=>{
-
-}
-
-module.exports = { acceptRequest, verify_code}

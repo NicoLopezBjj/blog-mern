@@ -13,7 +13,7 @@ import { Link, useNavigate } from 'react-router-dom';
 
 function Profile() {
   const {user, setUser} = useContext(User)
-  const {dark} = useContext(DarkMode)
+  const {dark, set} = useContext(DarkMode)
   const [edit, setEdit] = useState(false)
   const [nombre,setNombre] = useState("")
   const [error,setError] = useState("")
@@ -79,6 +79,10 @@ const storedbef = localStorage.getItem("user")
                 <div className="profile-role">
                   <h3>En blog mern puedes convertirte en un moderador.</h3>
                   {user && user.role == "user" ? <Link className="profile-request underline" to="/mod">Solicitar ser mod</Link> : <Link className="profile-request underline" to="/mod">Solicitar baja de mod</Link>}
+                </div>
+                <div className="profile-modes">
+                  <button className="hero-btn signup-btn" onClick={set}>{dark ? "Habilitar modo claro" : "Habilitar modo oscuro"}</button>
+                  <button className="hero-btn signin-btn">Cambiar idioma a inglés</button>
                 </div>
               </div>
             </div>
