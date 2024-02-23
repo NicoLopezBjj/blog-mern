@@ -39,7 +39,7 @@ function Dashboard() {
   return (
     <div className="bg-4">
         <Header/>
-        <section className={dark ? "dashboard dark-dashboard" : "dashboard clear-dashboard"}>
+        <section className={dark ? "font dashboard dark-dashboard" : "font dashboard clear-dashboard"}>
             <div className="dashboard-header">
               <h1>Muro</h1>
               <Link to="/add"><button className="header-btn signup-btn">Agregar entrada</button></Link>

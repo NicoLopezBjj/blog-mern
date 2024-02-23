@@ -1,4 +1,5 @@
 const mongoose = require ('mongoose')
+const Code = require("./Code")
 const bcrypt = require ('bcrypt')
 
 const userSchema = new mongoose.Schema({
@@ -29,7 +30,7 @@ const userSchema = new mongoose.Schema({
     modCode:{
         type:String,
         unique:true,
-        sparse:true
+        sparse:true,
     },
     friends:{
         type:Array,
@@ -54,13 +55,27 @@ userSchema.post('save',function(doc, next){
 })
 
 // ACTUALIZAR EL ROL DEL USUARIO A MOD
-userSchema.methods.verifyAndSetRole = async function (code) {
-    if (this.modCode === code) {
+userSchema.methods.verifyAndSetRole = async function (param) {
+    const verify = Code.findOne({code:param})
+    if (verify) {
+        this.modCode = param
         this.role = 'mod'
         await this.save()
         return true //Cambio de rol exitoso
     }else {
         return false //Codigo de confirmacion incorrecto
+    }
+}
+
+userSchema.methods.deleteRole = async function (param) {
+    const dlt = Code.findOneAndDelete({code:param})
+    if(dlt) {
+        this.modCode = null
+        this.role = 'user'
+        await this.save()
+        return true
+    }else{
+        return false
     }
 }
 

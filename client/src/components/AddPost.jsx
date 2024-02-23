@@ -27,7 +27,7 @@ function AddPost() {
   return (
     <div className="bg-3">
         <Header/>
-        <section className={dark ? "add-post dark-add-post" : "add-post clear-add-post"}>
+        <section className={dark ? "font add-post dark-add-post" : "font add-post clear-add-post"}>
             <h1>Agregar entrada</h1>
             <form className="add-post-form" onSubmit={createPost}>
               <div className="add-post-form-section">

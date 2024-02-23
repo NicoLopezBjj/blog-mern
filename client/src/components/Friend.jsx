@@ -63,8 +63,9 @@ function Friend() {
                   comments={p.comments} /> 
             </Link>)})*/
 // console.log(thisUser)
+//onClick={addFriend} en linea 79
   return (
-    <div className="bg-4 prof">
+    <div className="bg-4 font prof">
         <Header/>
         <section className={dark ? "profile dark-profile" : "profile clear-profile"}>
             <div className="profile-header">
@@ -75,7 +76,7 @@ function Friend() {
               <div className="profile-align">
                 <div className="user-mail">
                   <h2>Mail: {thisUser != [] ? thisUser.email : "///////"}</h2>
-                  <button onClick={addFriend} className="friend-btn signin-btn">Enviar solicitud de amistad</button>
+                  <button  className="friend-btn signin-btn">Enviar solicitud de amistad</button>
                 </div>
               </div>
             </div>
