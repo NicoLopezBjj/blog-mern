@@ -106,7 +106,7 @@ function Post() {
         <>
             {post.length > 0 ? 
             <>
-              <section className="post">
+              <section className="font post">
                   <div className="post-header">
                     <h1>{post[0].title}</h1>
                     <h1><Link to={post != [] && post[0].username === user.name ? "/profile" : postUsername(post[0].user)} className="strhov underline">{post[0].username}</Link> | {post[0].date.slice(0,10)}, <span>{post[0].date.slice(11,16)}</span></h1>
@@ -122,7 +122,7 @@ function Post() {
                       <h3>{post[0].visits} {post[0].visits === 1 ? "visit" : "visits"}</h3>
                   </div>
               </section>
-              <section className="comments">
+              <section className="font comments">
                 <h1>Comments</h1>
                 <hr />
                 <div className="comment-list">

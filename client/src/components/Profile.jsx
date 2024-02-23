@@ -60,7 +60,7 @@ const storedbef = localStorage.getItem("user")
   }
 
   return (
-    <div className="bg-4 prof">
+    <div className="bg-4 font prof">
         <Header/>
         <section className={dark ? "profile dark-profile" : "profile clear-profile"}>
             <div className="profile-header">

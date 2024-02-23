@@ -20,7 +20,7 @@ function SignUp() {
 
   return (
     <div className="bg-2">
-        <section className="sign">
+        <section className="font sign">
             <h1>escribe sin problemas.</h1>
             <form onSubmit={create} className={dark ? "sign-form dark-sign-form" : "sign-form clear-sign-form"}>
               <h3>blog mern.</h3>

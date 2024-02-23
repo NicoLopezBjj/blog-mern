@@ -12,7 +12,7 @@
   --drk:#7a1e14;
 }
 
-header, button, input, textarea, .sign, .dashboard, .userboard, .add-post, .post, .comments, .prof{
+header, button, input, textarea, .font{
   font-family:'Work Sans', sans-serif;
 }
 
@@ -304,8 +304,7 @@ header h1{
   margin:2em;
 }
 
-.add-post{
-  width:90%;
+.add-post, .add-code{
   margin:2.5em auto;
   padding:3em 0;
   border-radius:0.5rem;
@@ -315,7 +314,11 @@ header h1{
   align-items:center;
 }
 
-.add-post-form{
+.add-code{
+  width:70%;
+}
+
+.add-post, .add-post-form{
   width:90%;
 }
 
@@ -340,6 +343,14 @@ header h1{
 
 .add-textarea{
   resize:none;
+}
+
+.add-code-text{
+  width:90%;
+  font-size:1.2rem;
+  font-weight:bold;
+  margin:1em auto;
+  text-align:center;
 }
 
 .thumbnail{
@@ -537,4 +548,11 @@ header h1{
   font-size:1.1rem;
   font-weight:bold;
   margin-bottom:1.5em;
+}
+
+.code-text{
+  text-align:center;
+  font-size:1.2rem;
+  font-weight:bold;
+  margin:1.3em 0 0.2em 0;
 }

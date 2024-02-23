@@ -8,21 +8,21 @@ import { useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 function Header() {
-  const {user, setUser} = useContext(User)
+  const {user, setUser, LogOut} = useContext(User)
   const {dark} = useContext(DarkMode)
   const navigate = useNavigate()
   const token = localStorage.getItem("token")
 
-  const LogOut = async () => {
-    localStorage.removeItem("token")
-    localStorage.removeItem("user")
-    setUser(null)
-    console.log("usuario en logout front", user)
-    const out = await axios.get("http://localhost:3001/signout")
-    if(out.data == "Logged out"){
-      console.log("se fue del back... creeemos")
-    }
-  }
+  // const LogOut = async () => {
+  //   localStorage.removeItem("token")
+  //   localStorage.removeItem("user")
+  //   setUser(null)
+  //   console.log("usuario en logout front", user)
+  //   const out = await axios.get("http://localhost:3001/signout")
+  //   if(out.data == "Logged out"){
+  //     console.log("se fue del back... creeemos")
+  //   }
+  // }
 
   useEffect(()=>{
     async function getUser(){

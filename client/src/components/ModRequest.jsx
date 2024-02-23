@@ -41,7 +41,7 @@ function ModRequest() {
   return (
     <div className="bg-1">
         <Header/>
-        <section className={dark ? "add-post dark-add-post" : "add-post clear-add-post"}>
+        <section className={dark ? "font add-post dark-add-post" : "font add-post clear-add-post"}>
             <h1>¿Quieres ser mod?</h1>
             <form className="add-post-form">
               <div className="add-post-form-section">

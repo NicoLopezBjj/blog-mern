@@ -43,13 +43,13 @@ function Requests (){
     return (
         <div className="bg-5">
         <Header/>
-        <section className={dark ? "userboard dark-dashboard" : "userboard clear-dashboard"}>
+        <section className={dark ? "font userboard dark-dashboard" : "font userboard clear-dashboard"}>
             <div className="dashboard-header">
               <h1>Lista de usuarios</h1>
               <Link to="/mod/users"><button className="header-btn signup-btn">Administrar</button></Link>
             </div>
         </section>
-        <section className={dark ? "dashboard dark-dashboard" : "dashboard clear-dashboard"}>
+        <section className={dark ? "font dashboard dark-dashboard" : "font dashboard clear-dashboard"}>
             <div className="dashboard-header">
               <h1>Solicitudes</h1>
             </div>

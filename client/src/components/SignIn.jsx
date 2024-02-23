@@ -21,7 +21,7 @@ function SignIn() {
 
   return (
     <div className="bg-1">
-        <section className="sign">
+        <section className="font sign">
             <h1>bienvenido.</h1>
             <form onSubmit={send} className={dark ? "sign-form dark-sign-form" : "sign-form clear-sign-form"}>
               <h3>blog mern.</h3>
