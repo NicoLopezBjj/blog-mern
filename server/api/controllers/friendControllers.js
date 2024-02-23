@@ -44,6 +44,7 @@ const get_friend_posts = async(req,res)=>{
 const create_request_friend = async (req,res) =>{
     const { userId } = req.params
     const { request } = req.body
+    console.log('i am userId from create_request_friend',userId)
     try{
         const user = await Usuario.findById(userId)
         if(!user){
