@@ -38,9 +38,7 @@ function Friend() {
 
   const sentRequestFriend = async () => { 
       try{
-        // console.log(' i am friend',userId)
-        // console.log(' i am user',userFront)
-        const response = await axios.post(`http://localhost:3001/u/${userId}/sent-request-friend`, {userFront : user._id})
+        const response = await axios.post(`http://localhost:3001/u/${userId}/sent-request-friend`, {userFront : user._id, request : "Solicitud de amistad enviada" })
         console.log(' i am RESPONSE', response.data)
       } catch (e){
         console.log('error when adding friend FRONT',e)
@@ -76,7 +74,7 @@ function Friend() {
               <div className="profile-align">
                 <div className="user-mail">
                   <h2>Mail: {thisUser != [] ? thisUser.email : "///////"}</h2>
-                  <button  className="friend-btn signin-btn">Enviar solicitud de amistad</button>
+                  <button onClick={sentRequestFriend} className="friend-btn signin-btn">Enviar solicitud de amistad</button>
                 </div>
               </div>
             </div>

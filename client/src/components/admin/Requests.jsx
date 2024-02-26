@@ -26,11 +26,6 @@ function Requests (){
         getRequests()
     },[])
 
-    // const acceptRequest = async(e)=> {
-    //     try{
-    //         const response = await axios.post(`http://localhost:3001/role/${userId}/code-generate-send-email`,user.email,)
-    //     }
-    // }
 
     /*
         requests.map((r)=>{

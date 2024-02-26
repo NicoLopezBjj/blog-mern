@@ -44,9 +44,7 @@ const sent_request = async(req, res)=>{
 const acceptRequest = async (req,res)=>{
     const {userId} = req.body
     try{
-        console.log('i am ID from front', userId)
         const user = await Usuario.findById(userId)
-        console.log('come front back acceptRequest',user)
         const codeConfirmation = randomString.generate(7)
         await sendEmail(user,codeConfirmation)
         res.json({success : true})

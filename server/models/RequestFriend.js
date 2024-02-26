@@ -2,7 +2,11 @@ const mongoose = require('mongoose')
 const Usuario = require('./Usuario')
 
 const RequestFriendSchema = new mongoose.Schema({
-    userId:{
+    fromUser:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"Usuario"
+    },
+    toUser:{
         type:mongoose.Schema.Types.ObjectId,
         ref:"Usuario"
     },

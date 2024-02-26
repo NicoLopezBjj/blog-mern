@@ -43,14 +43,17 @@ const get_friend_posts = async(req,res)=>{
 
 const create_request_friend = async (req,res) =>{
     const { userId } = req.params
-    const { request } = req.body
+    const { request,userFront } = req.body
+    console.log('i am userId from create_request_friend',userId)
+    console.log('i am userFront from create_request_friend',userFront)
     try{
         const user = await Usuario.findById(userId)
         if(!user){
             return res.status(404).json({ message: "user not found" })
         }
         const newRequest = new RequestFriend({
-            userId : userId,
+            fromUser: userFront,
+            toUser : userId,
             request : request
         })
 
