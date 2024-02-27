@@ -13,6 +13,26 @@ const get_requests_friend = async (req,res) =>{
     }
 }
 
+const get_sent_requests = async (req, res) => {
+    const {userId} = req.params
+    try{
+        const reqs = await RequestFriend.find({fromUser: userId})
+        res.json(reqs)
+    }catch(err){
+        console.log(err)
+    }
+}
+
+const get_received_requests = async (req, res) => {
+    const {userId} = req.params
+    try{
+        const reqs = await RequestFriend.find({toUser: userId})
+        res.json(reqs)
+    }catch(err){
+        console.log(err)
+    }
+}
+
 const get_friend_info = async(req,res)=>{
     try{
         const userId = req.params.userId
@@ -122,6 +142,8 @@ module.exports = {
     get_friend_posts,
     pull_friend,
     get_requests_friend,
+    get_sent_requests,
+    get_received_requests,
     create_request_friend,
     accept_request_friend
 }

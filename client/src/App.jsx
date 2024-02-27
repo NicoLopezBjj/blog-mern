@@ -19,6 +19,7 @@ import ModCode from './components/ModCode';
 import Requests from './components/admin/Requests'
 import Request from './components/admin/Request';
 import NoPage from './components/NoPage';
+import FriendRequests from './components/FriendRequests';
 
 function App() {
   const [dark, setDark] = useState(false)
@@ -60,6 +61,7 @@ function App() {
               <Route path="/signup" element={<SignUp/>}></Route>
               <Route path="/dashboard" element={<Dashboard/>}></Route>
               <Route path="/profile" element={<Profile/>}></Route>
+              <Route path="/profile/friends" element={<FriendRequests/>}></Route>
               <Route path="/user/:userId" element={<Friend/>}></Route>
               <Route path="/add" element={<AddPost/>}></Route>
               <Route path="/post/:userId/:postId" element={<Post/>}></Route>
