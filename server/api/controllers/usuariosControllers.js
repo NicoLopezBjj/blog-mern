@@ -79,6 +79,17 @@ const get_user = (req, res)=>{
     }
 }
 
+const find_user = async(req, res)=>{
+    const {userId} = req.params
+    try{
+        const userInfo = await Usuario.findById(userId)
+        res.json(userInfo)
+    }catch(err){
+        console.log(err)
+    }
+
+}
+
 const update_profile = async(req, res)=>{
     try{
         const { id, previousName, newName } = req.body
@@ -174,6 +185,7 @@ module.exports = {
     signin_get,
     signin_post,
     get_user,
+    find_user,
     auth,
     update_profile,
     sign_out

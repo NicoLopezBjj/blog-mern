@@ -62,6 +62,12 @@ const storedbef = localStorage.getItem("user")
   return (
     <div className="bg-4 font prof">
         <Header/>
+        <section className={dark ? "font userboard dark-dashboard" : "font userboard clear-dashboard"}>
+            <div className="dashboard-header">
+              <h1>Solicitudes de amistad</h1>
+              <Link to="/profile/friends"><button className="header-btn signup-btn">Ver</button></Link>
+            </div>
+        </section>
         <section className={dark ? "profile dark-profile" : "profile clear-profile"}>
             <div className="profile-header">
               <h1>{user ? user.email : "No mail"} - {user ? user.role : "No role"}</h1>

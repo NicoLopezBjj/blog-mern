@@ -6,30 +6,30 @@ import '../css/clear.css';
 import '../css/dark.css'
 import { User } from '../../context/User';
 import { DarkMode } from '../../context/DarkMode';
-import Header from '../../components/parts/Header';
-import RequestThumbnail from './admin-parts/RequestThumbnail';
-import { Link, useNavigate, useParams} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
-function RequestFriends (){
-    const {user} = useContext(User)
+function FriendRequestFromThumbnail ({from}){
     const {dark} = useContext(DarkMode)
-    const {userId,requestId} = useParams()
-    const [requests, setRequests] = useState([])
+    const [userInfo, setUserInfo] = useState([])
+    const friendLink = `/user/${from}`
 
     useEffect(()=>{
-        async function getRequestsFriends(){
-            const petition = await axios.get(`http://localhost:3001/u/${userId}/get-requests-friend`)
-            if(petition){
-                setRequests(petition.data)
+        console.log("entro")
+       async function getFrom(){
+            console.log("info antes")
+            const info = await axios.get(`http://localhost:3001/find/${from}`)
+            console.log("info", info)
+            if(info){
+                setUserInfo(info.data)
             }
-        }
-        getRequestsFriends()
+       }
+       getFrom()
     },[])
 
     const acceptRequest = async (request) =>{
         try{
-            await axios.post(`http://localhost:3001/u/${userId}/add-friend/${requestId}`)
-            setRequests(requests.filter(request =>request._id !== requestId))
+            //await axios.post(`http://localhost:3001/u/${userId}/add-friend/${requestId}`)
+            //setRequests(requests.filter(request =>request._id !== requestId))
             alert('Solicitud aceptada con exito')
         }catch(e){
         console.log('error accepting friend request',e)}
@@ -43,34 +43,34 @@ function RequestFriends (){
         }
     }
 
-    return (
-        <div className="bg-5">
-        <Header/>
-        <section className={dark ? "font userboard dark-dashboard" : "font userboard clear-dashboard"}>
-        </section>
-        <section className={dark ? "font dashboard dark-dashboard" : "font dashboard clear-dashboard"}>
-            <div className="dashboard-header">
-              <h1>Solicitudes de amistad</h1>
-            </div>
-            <div className="posts">
-                {requests.length > 0 ?  
+    /*
+    requests.length > 0 ?  
                     requests.map((request)=>{
-                       <div key={request._id} className="request-thumbnail">
+                       return (<div key={request._id} className="request-thumbnail">
                             <p>{request.fromUser.name} quiere ser tu amigo</p>
                             <div className='request-actions'>
                                 <button onClick={()=>acceptRequest(request._id)}>Aceptar</button>
                                 <button onClick={()=>rejectRequest(request._id)}>Rechazar</button>
                             </div>
-                       </div>
+                       </div>)
                     })
                 : 
                     <h1 style={{fontSize:"2rem",marginTop:"1em", marginLeft:"1.3em"}}>En este momento no hay ninguna solicitud de amistad.</h1>
                 }
+    */
+
+    return (
+        <div className="thumbnail">
+            <div className="thumbnail-header">
+                <h1 style={{marginRight:"0.3em"}}>Solicitud de: <Link to={friendLink} className="strhov underline">{userInfo != [] ? userInfo.name : "...."}</Link></h1>
+                <div style={{display:"flex"}}>
+                    <button className="header-btn signin-btn">Aceptar solicitud</button>
+                    <button className="header-btn signup-btn">Rechazar solicitud</button>
+                </div>
             </div>
-        </section>
-    </div>
-    )
+        </div>
+    );
 }
 
 
-export default RequestFriends
+export default FriendRequestFromThumbnail

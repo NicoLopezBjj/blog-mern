@@ -544,6 +544,14 @@ header h1{
   justify-content:space-between;
 }
 
+.request-title{
+  display:flex;
+  justify-content:flex-end;
+  font-size:3rem;
+  width:87%;
+  margin:1em auto 1em auto;
+}
+
 .request-text{
   font-size:1.1rem;
   font-weight:bold;
