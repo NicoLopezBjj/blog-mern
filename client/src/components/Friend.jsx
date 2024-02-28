@@ -39,6 +39,7 @@ function Friend() {
   const sentRequestFriend = async () => { 
       try{
         const response = await axios.post(`http://localhost:3001/u/${userId}/sent-request-friend`, {userFront : user._id, request : "Solicitud de amistad enviada" })
+        alert("Solicitud enviada con exito")
         console.log(' i am RESPONSE', response.data)
       } catch (e){
         console.log('error when adding friend FRONT',e)

@@ -10,13 +10,14 @@ import FriendRequestFromThumbnail from './parts/FriendRequestFromThumbnail';
 import FriendRequestToThumbnail from './parts/FriendRequestToThumbnail';
 import { DarkMode } from '../context/DarkMode';
 import { User } from '../context/User';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 
 function FriendRequests() {
   const {user, setUser} = useContext(User)
   const {dark, set} = useContext(DarkMode)
   const [sent, setSent] = useState([])
   const [received, setReceived] = useState([])
+  const {requestId} = useParams()
   const id = JSON.parse(localStorage.getItem("user"))._id
 
   useEffect(()=>{
@@ -50,7 +51,7 @@ function FriendRequests() {
             <div className="profile-section">
               {received.length > 0 ? 
               received.map((r)=>{
-                return <FriendRequestFromThumbnail from={r.fromUser} />
+                return <FriendRequestFromThumbnail from={r.fromUser} request_id={r._id}/>
               })
               : null}
             </div>
