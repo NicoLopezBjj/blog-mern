@@ -8,7 +8,7 @@ router.get("/:userId/get-received-requests", controllers.get_received_requests)
 router.get("/:userId/get", controllers.get_friend_info)
 router.get("/:userId/get-posts", controllers.get_friend_posts)
 router.post("/:userId/sent-request-friend",controllers.create_request_friend)
-router.post("/:userId/add-friend/:requestId",controllers.accept_request_friend)
+router.post("/:userId/add-friend",controllers.accept_request_friend)
 
 
 module.exports = router

@@ -36,8 +36,6 @@ const signin_get = async(req,res)=>{
 
 const signin_post = async (req,res) =>{
     const { nombreOMail, password } = req.body; //obtengo info de req.body
-    console.log(nombreOMail,password)
-
     try {
         const usuario = await Usuario.findOne({ //busca usuario
             $or:[

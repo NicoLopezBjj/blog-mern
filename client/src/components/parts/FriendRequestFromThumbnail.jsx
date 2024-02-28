@@ -6,12 +6,14 @@ import '../css/clear.css';
 import '../css/dark.css'
 import { User } from '../../context/User';
 import { DarkMode } from '../../context/DarkMode';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
-function FriendRequestFromThumbnail ({from}){
+function FriendRequestFromThumbnail ({request_id, from, to}){
     const {dark} = useContext(DarkMode)
+    const {user} = useContext(User)
     const [userInfo, setUserInfo] = useState([])
     const friendLink = `/user/${from}`
+    
 
     useEffect(()=>{
         console.log("entro")
@@ -26,22 +28,25 @@ function FriendRequestFromThumbnail ({from}){
        getFrom()
     },[])
 
-    const acceptRequest = async (request) =>{
+  
+    const acceptRequest = async (request_id) =>{
+        console.log(request_id)
         try{
-            //await axios.post(`http://localhost:3001/u/${userId}/add-friend/${requestId}`)
-            //setRequests(requests.filter(request =>request._id !== requestId))
+            await axios.post(`http://localhost:3001/u/${userInfo._id}/add-friend`,  { withCredentials:true ,requestId : request_id , userFront : to})
+            console.log(request_id)
             alert('Solicitud aceptada con exito')
         }catch(e){
-        console.log('error accepting friend request',e)}
+            console.log(request_id)
+            console.log('error accepting friend request',e)}
     }
 
-    const rejectRequest = async (request) =>{
-        try{
-            await axios.post()
-        }catch(e){
-            console.log("Error when rejecting friend request",e)
-        }
-    }
+    // const rejectRequest = async (request) =>{
+    //     try{
+    //         await axios.post()
+    //     }catch(e){
+    //         console.log("Error when rejecting friend request",e)
+    //     }
+    // }
 
     /*
     requests.length > 0 ?  
@@ -64,8 +69,8 @@ function FriendRequestFromThumbnail ({from}){
             <div className="thumbnail-header">
                 <h1 style={{marginRight:"0.3em"}}>Solicitud de: <Link to={friendLink} className="strhov underline">{userInfo != [] ? userInfo.name : "...."}</Link></h1>
                 <div style={{display:"flex"}}>
-                    <button className="header-btn signin-btn">Aceptar solicitud</button>
-                    <button className="header-btn signup-btn">Rechazar solicitud</button>
+                    <button className="header-btn signin-btn" onClick={()=> acceptRequest(request_id)}>Aceptar solicitud</button>
+                    <button className="header-btn signup-btn" >Rechazar solicitud</button>
                 </div>
             </div>
         </div>
