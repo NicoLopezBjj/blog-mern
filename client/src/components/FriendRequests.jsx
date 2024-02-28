@@ -51,7 +51,7 @@ function FriendRequests() {
             <div className="profile-section">
               {received.length > 0 ? 
               received.map((r)=>{
-                return <FriendRequestFromThumbnail from={r.fromUser} request_id={r._id}/>
+                return <FriendRequestFromThumbnail from={r.fromUser} request_id={r._id} to={r.toUser}/>
               })
               : null}
             </div>

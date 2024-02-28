@@ -8,7 +8,7 @@ import { User } from '../../context/User';
 import { DarkMode } from '../../context/DarkMode';
 import { Link, useParams } from 'react-router-dom';
 
-function FriendRequestFromThumbnail ({request_id,from}){
+function FriendRequestFromThumbnail ({request_id, from, to}){
     const {dark} = useContext(DarkMode)
     const {user} = useContext(User)
     const [userInfo, setUserInfo] = useState([])
@@ -32,7 +32,7 @@ function FriendRequestFromThumbnail ({request_id,from}){
     const acceptRequest = async (request_id) =>{
         console.log(request_id)
         try{
-            await axios.post(`http://localhost:3001/u/${userInfo._id}/add-friend`,  { withCredentials:true ,requestId : request_id})
+            await axios.post(`http://localhost:3001/u/${userInfo._id}/add-friend`,  { withCredentials:true ,requestId : request_id , userFront : to})
             console.log(request_id)
             alert('Solicitud aceptada con exito')
         }catch(e){

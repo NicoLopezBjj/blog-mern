@@ -80,21 +80,22 @@ const create_request_friend = async (req,res) =>{
 }
 
 const accept_request_friend = async (req,res) =>{
-    const { requestId } = req.body
+    const { requestId , userFront} = req.body
+    const { userId } = req.params
     console.log('from accept request', requestId)
     try {
         const request = await RequestFriend.findById(requestId)
         if(!request){
             return res.status(404).json({ message:"friend request not found" })
         }
-        const user = await Usuario.findById(request.userId)
+        const user = await Usuario.findById(request.toUser)
         if(!user){
             return res.status(404).json({ message:"user not found" })
         }
 
-        user.friends.push(request.userId)
+        user.friends.push(request.fromUser)
         await user.save()
-        await request.remove()
+        await RequestFriend.findOneAndDelete({id:request._id})
         return res.status(200).json({ message: "friend request accept successfully"})
     } catch(e){
         console.log("error when accepting request",e)
