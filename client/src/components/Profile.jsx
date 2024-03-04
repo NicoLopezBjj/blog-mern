@@ -55,19 +55,9 @@ const storedbef = localStorage.getItem("user")
     }
   }
 
-  function updateUser (updated){
-    setUser(updated)
-  }
-
   return (
     <div className="bg-4 font prof">
         <Header/>
-        <section className={dark ? "font userboard dark-dashboard" : "font userboard clear-dashboard"}>
-            <div className="dashboard-header">
-              <h1>Solicitudes de amistad</h1>
-              <Link to="/profile/friends"><button className="header-btn signup-btn">Ver</button></Link>
-            </div>
-        </section>
         <section className={dark ? "profile dark-profile" : "profile clear-profile"}>
             <div className="profile-header">
               <h1>{user ? user.email : "No mail"} - {user ? user.role : "No role"}</h1>
@@ -91,6 +81,12 @@ const storedbef = localStorage.getItem("user")
                   <button className="hero-btn signin-btn">Cambiar idioma a inglés</button>
                 </div>
               </div>
+            </div>
+        </section>
+        <section className={dark ? "font userboard dark-dashboard" : "font userboard clear-dashboard"}>
+            <div className="dashboard-header">
+              <h1>Mis amigos</h1>
+              <Link to="/profile/friends"><button className="header-btn signup-btn">Ver mi lista de amigos</button></Link>
             </div>
         </section>
         <div className={dark ? "profile-posts dark-profile-posts" : "profile-posts clear-profile-posts"}>

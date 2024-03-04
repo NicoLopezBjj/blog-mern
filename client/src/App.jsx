@@ -12,6 +12,8 @@ import SignUp from './components/SignUp';
 import Dashboard from './components/Dashboard';
 import Profile from './components/Profile';
 import Friend from './components/Friend';
+import MyFriends from './components/MyFriends';
+import FriendRequests from './components/FriendRequests';
 import AddPost from './components/AddPost';
 import Post from './components/Post';
 import ModRequest from './components/ModRequest';
@@ -19,13 +21,15 @@ import ModCode from './components/ModCode';
 import Requests from './components/admin/Requests'
 import Request from './components/admin/Request';
 import NoPage from './components/NoPage';
-import FriendRequests from './components/FriendRequests';
 
 function App() {
   const [dark, setDark] = useState(false)
   const [user, setUser] = useState(null)
   const [likes, setLikes] = useState(0)
   const [visits, setVisits] = useState(0)
+
+ /*RECORDAR sacar clase "font" de etiquetas que ya estén contenidas en otras que ya tengan esta clase.
+ Por ejemplo: <div className="font"><section className="font" <- BORRAR ESTE FONT PORQUE YA ESTÁ EN EL DIV PADRE></section></div>*/
 
   const LogOut = async () => {
     localStorage.removeItem("token")
@@ -61,7 +65,8 @@ function App() {
               <Route path="/signup" element={<SignUp/>}></Route>
               <Route path="/dashboard" element={<Dashboard/>}></Route>
               <Route path="/profile" element={<Profile/>}></Route>
-              <Route path="/profile/friends" element={<FriendRequests/>}></Route>
+              <Route path="/profile/friends" element={<MyFriends/>}></Route>
+              <Route path="/profile/friends/requests" element={<FriendRequests/>}></Route>
               <Route path="/user/:userId" element={<Friend/>}></Route>
               <Route path="/add" element={<AddPost/>}></Route>
               <Route path="/post/:userId/:postId" element={<Post/>}></Route>
