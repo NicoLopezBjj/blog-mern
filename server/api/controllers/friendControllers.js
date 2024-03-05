@@ -102,6 +102,22 @@ const accept_request_friend = async (req,res) =>{
     }
 }
 
+const get_my_friends = async (req,res) => {
+    const userId = req.params.userId
+    console.log("come from FRONT, i am user who wants my friends list",userId)
+    try {
+        const user = await Usuario.findById({ _id : userId })
+        if (!user){
+            res.status(404).json({ message:"not found friends" })
+        } else {
+            console.log("i have my list", user.friends)
+            res.json(user.friends)
+        }
+    } catch (e) {
+        console.log("error when founding friends of user",e)
+    }
+}
+
 // const add_friend = async(req,res)=>{
 //     const { userId } = req.params
 //     const { userFront } = req.body
@@ -141,5 +157,6 @@ module.exports = {
     get_sent_requests,
     get_received_requests,
     create_request_friend,
-    accept_request_friend
+    accept_request_friend,
+    get_my_friends
 }

@@ -16,7 +16,7 @@ function SignIn() {
   const send = async (e) => {
     e.preventDefault()
 
-    await axios.post("http://localhost:3001/signin", {nombreOMail, password}, {withCredentials: true}).then(resp => {console.log("r => " + resp); localStorage.setItem("token", resp.data.token); navigate("/dashboard")}).catch(err => {console.log("e => " + err)})
+    await axios.post("http://localhost:3001/signin", {nombreOMail, password}, {withCredentials: true}).then(resp => {console.log("r => " + resp); localStorage.setItem("token", resp.data.token); navigate("/dashboard")}).catch(err => {console.log("e => " + err),alert("Credenciales incorrectas")})
   }
 
   return (

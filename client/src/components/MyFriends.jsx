@@ -9,12 +9,14 @@ import Header from './parts/Header';
 import FriendThumbnail from './parts/FriendThumbnail';
 import { DarkMode } from '../context/DarkMode';
 import { User } from '../context/User';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 
 function MyFriends() {
-  const {user, setUser} = useContext(User)
+  const {user} = useContext(User)
   const {dark, set} = useContext(DarkMode)
   const [friends, setFriends] = useState([])
+  const {  } = useParams()
+
 
   useEffect(()=>{
     console.log("get my posts")
@@ -28,17 +30,31 @@ function MyFriends() {
     }
   },[user])
 
-  /*
+   useEffect(()=>{
+     console.log("get my friends")
+     console.log("soy el usuario del front",user._id)
+        if(user){
+          axios.get(`http://localhost:3001/u/${user._id}/get-my-friends`)
+          .then(response => {
+            console.log("info del back",response.data)
+            if (response.data){
+              setFriends(response.data)
+            }
+          })
+          .catch(e =>{console.log("error when searching friends list of back",e)})
+        }
+   },[user])
+
   
-    friends.map((f)=>{
-        const friend = `/user/${f._id}`
-      return (<Link to={friend}>
-        <FriendThumbnail key={f._id}
-            id?
-          name= {f.name}
-          img= {f.image} />
-        </Link>)
-  */
+  
+    // friends.map((f)=>{
+    //     const friend = `/user/${f._id}`
+    //   return (<Link to={friend}>
+    //     <FriendThumbnail key={f._id}
+    //       name= {f.name}
+    //       img= {f.image} />
+    //     </Link>)
+  
 
   return (
     <div className="bg-4 font prof">
