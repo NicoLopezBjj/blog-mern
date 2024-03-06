@@ -27,7 +27,7 @@ function FriendRequests() {
             setSent(petition.data)
           }
       }
-      
+      getSentRequests()
   },[user])
 
   useEffect(()=>{

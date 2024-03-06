@@ -92,8 +92,9 @@ const accept_request_friend = async (req,res) =>{
         if(!user){
             return res.status(404).json({ message:"user not found" })
         }
-
-        user.friends.push(request.fromUser)
+        user.skipPreSave = true
+        const friend = await Usuario.findById(request.fromUser)
+        user.friends.push(friend)
         await user.save()
         await RequestFriend.findOneAndDelete({id:request._id})
         return res.status(200).json({ message: "friend request accept successfully"})
