@@ -8,13 +8,13 @@ import '../css/dark.css'
 import { User } from '../../context/User';
 
 function FriendThumbnail({name, img}) {
-  const {user} = useContext(User)
+  //const {user} = useContext(User)
 
   return (
     <div className="thumbnail">
         <div className="thumbnail-header">
-            <h1 className="strhov">Amigo</h1>
-            <img src={img} alt="Imagen" />
+            <h1 className="strhov">{name}</h1>
+            <img src={img} alt="Imagen" className="friend-picture" />
         </div>
     </div>
   );

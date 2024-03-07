@@ -17,19 +17,6 @@ function MyFriends() {
   const [friends, setFriends] = useState([])
   const {  } = useParams()
 
-
-  useEffect(()=>{
-    console.log("get my posts")
-    if(user){
-      async function getMyFriends(){
-        const petition = await axios.get(`http://localhost:3001/p/${user._id}/all-posts`)
-        if(user && petition.data != null || "Error"){
-          setFriends(petition.data)
-        }
-      }
-    }
-  },[user])
-
    useEffect(()=>{
      console.log("get my friends")
      console.log("soy el usuario del front",user._id)
@@ -44,17 +31,6 @@ function MyFriends() {
           .catch(e =>{console.log("error when searching friends list of back",e)})
         }
    },[user])
-
-  
-  
-    // friends.map((f)=>{
-    //     const friend = `/user/${f._id}`
-    //   return (<Link to={friend}>
-    //     <FriendThumbnail key={f._id}
-    //       name= {f.name}
-    //       img= {f.image} />
-    //     </Link>)
-  
 
   return (
     <div className="bg-4 font prof">
@@ -71,8 +47,16 @@ function MyFriends() {
               <h1>Mis amigos</h1>
             </div>
             <div className="posts">
-            <FriendThumbnail />
-              {friends.length > 0 ? "Hay amigos" : <h1 style={{fontSize:"2rem",marginTop:"1em", marginLeft:"1.3em"}}>En este momento no tienes ningún amigo.</h1>}
+              {friends.length > 0 ? 
+                friends.map((f)=>{
+                  const friend = `/user/${f._id}`
+                  return (<Link to={friend}>
+                      <FriendThumbnail key={f._id}
+                        name= {f.name}
+                        img= {f.image} />
+                      </Link>)})
+                : <h1 style={{fontSize:"2rem",marginTop:"1em", marginLeft:"1.3em"}}>En este momento no tienes ningún amigo.</h1>
+              }
             </div>
         </section>
     </div>

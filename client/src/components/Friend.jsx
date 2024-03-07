@@ -9,7 +9,7 @@ import Header from './parts/Header';
 import PostThumbnail_onProfile from './parts/PostThumbnail_onProfile';
 import { DarkMode } from '../context/DarkMode';
 import { User } from '../context/User';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 
 function Friend() {
   const {user} = useContext(User)
@@ -17,6 +17,8 @@ function Friend() {
   const {userId} = useParams()
   const [thisUser, setUser] = useState([])
   const [userPosts, setUserPosts] = useState([])
+  const [sent, setSent] = useState("Enviar solicitud de amistad")
+  const navigate = useNavigate()
 
   useEffect(()=>{
     console.log("get my posts")
@@ -39,8 +41,9 @@ function Friend() {
   const sentRequestFriend = async () => { 
       try{
         const response = await axios.post(`http://localhost:3001/u/${userId}/sent-request-friend`, {userFront : user._id, request : "Solicitud de amistad enviada" })
-        alert("Solicitud enviada con exito")
+        setSent("Solicitud enviada")
         console.log(' i am RESPONSE', response.data)
+        setTimeout(()=>{navigate("/profile")}, 1000)
       } catch (e){
         console.log('error when adding friend FRONT',e)
       }
@@ -75,7 +78,7 @@ function Friend() {
               <div className="profile-align">
                 <div className="user-mail">
                   <h2>Mail: {thisUser != [] ? thisUser.email : "///////"}</h2>
-                  <button onClick={sentRequestFriend} className="friend-btn signin-btn">Enviar solicitud de amistad</button>
+                  <button onClick={sentRequestFriend} className="friend-btn signin-btn">{sent}</button>
                 </div>
               </div>
             </div>

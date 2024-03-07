@@ -13,7 +13,7 @@ function FriendRequestFromThumbnail ({request_id, from, to}){
     const {user} = useContext(User)
     const [userInfo, setUserInfo] = useState([])
     const friendLink = `/user/${from}`
-    
+    const [ok, setOk] = useState("Aceptar solicitud")
 
     useEffect(()=>{
         console.log("entro")
@@ -34,7 +34,7 @@ function FriendRequestFromThumbnail ({request_id, from, to}){
         try{
             await axios.post(`http://localhost:3001/u/${userInfo._id}/add-friend`,  { withCredentials:true ,requestId : request_id , userFront : to})
             console.log(request_id)
-            alert('Solicitud aceptada con exito')
+            setOk('Solicitud aceptada')
         }catch(e){
             console.log(request_id)
             console.log('error accepting friend request',e)}
@@ -69,7 +69,7 @@ function FriendRequestFromThumbnail ({request_id, from, to}){
             <div className="thumbnail-header">
                 <h1 style={{marginRight:"0.3em"}}>Solicitud de: <Link to={friendLink} className="strhov underline">{userInfo != [] ? userInfo.name : "...."}</Link></h1>
                 <div style={{display:"flex"}}>
-                    <button className="header-btn signin-btn" onClick={()=> acceptRequest(request_id)}>Aceptar solicitud</button>
+                    <button className="header-btn signin-btn" onClick={()=> acceptRequest(request_id)}>{ok}</button>
                     <button className="header-btn signup-btn" >Rechazar solicitud</button>
                 </div>
             </div>

@@ -538,6 +538,10 @@ header h1{
   margin-top:0.1em;
 }
 
+.friend-picture{
+  width:4em;
+}
+
 .user-mail{
   margin:0.6em 0 1em 0;
   padding:0 3.5em;

@@ -56,6 +56,7 @@ userSchema.post('save',function(doc, next){
 
 // ACTUALIZAR EL ROL DEL USUARIO A MOD
 userSchema.methods.verifyAndSetRole = async function (param) {
+    this.skipPreSave = true
     const verify = Code.findOne({code:param})
     if (verify) {
         this.modCode = param
@@ -68,6 +69,7 @@ userSchema.methods.verifyAndSetRole = async function (param) {
 }
 
 userSchema.methods.deleteRole = async function (param) {
+    this.skipPreSave = true
     const dlt = Code.findOneAndDelete({code:param})
     if(dlt) {
         this.modCode = null

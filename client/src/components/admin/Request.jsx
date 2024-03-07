@@ -16,6 +16,8 @@ function Request (){
     const {userId} = useParams()
     const navigate = useNavigate()
     const [request, setRequest] = useState([])
+    const [ok, setOk] = useState("Aceptar solicitud") //esto con i18Next quedaría useState(t("...aceptar-solicitud...")), se setea setOk(t("...solicitud-aceptada..."))
+    const [error, setError] = useState("")
 
     useEffect(()=>{
         async function getRequest(){
@@ -35,13 +37,14 @@ function Request (){
             console.log('come front acceptRequest', user)
             console.log('come front',userId)
             if (response.data.success) {
-                alert("Solicitud aceptada correctamente. Se ha enviado un correo electrónico al usuario con el código de confirmación.");
+                setOk("Solicitud aceptada");
+                setTimeout(()=>{navigate("/mod/requests")}, 1000)
             } else {
-                alert("Error al aceptar la solicitud. Por favor, intenta de nuevo más tarde.");
+                setError("ERROR: Error al aceptar la solicitud, inténtelo de nuevo más tarde.");
             }
         } catch (error) {
             console.error("Error:", error);
-            alert("Ocurrió un error. Por favor, intenta de nuevo más tarde.");
+            setError("ERROR: Ocurrió un error. Por favor, intenta de nuevo más tarde.");
         }
     };
 
@@ -66,7 +69,7 @@ function Request (){
                     </div>
                     <p className="post-body">{request.body}</p>
                     <div className="add-post-form-button">
-                        <button className="add-btn signin-btn" onClick={acceptRequest}>Aceptar solicitud</button>
+                        <button className="add-btn signin-btn" onClick={acceptRequest}>{ok}</button>
                         <button className="add-btn signup-btn" onClick={rejectRequest}>Rechazar solicitud</button>
                     </div>
                     {/* <div className="post-buttons"></div> */}
@@ -77,6 +80,7 @@ function Request (){
                     Aceptar la solicitud significa darle el rol de mod/administrador a un usuario que no lo es. 
                     Antes de tomar una decisión, verifica el cuerpo de esta solicitud y los siguientes datos del usuario: PERFIL, ENTRADAS, COMENTARIOS y AMIGOS. <br /> 
                     Si aceptas la solicitud y el mod elegido termina dañando a la página o a terceros relacionados, será TU responsabilidad.</p>
+                    <p style={{fontWeight:"bold", color:"red"}}>{error}</p>
                 </section>
                 </>
                 
