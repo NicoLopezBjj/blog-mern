@@ -4,14 +4,24 @@ import '../css/dark.css'
 import axios from 'axios'
 import { User } from '../../context/User';
 import { DarkMode } from '../../context/DarkMode';
-import { useEffect, useContext } from 'react';
+import { useEffect, useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from "react-i18next"
 
 function Header() {
   const {user, setUser, LogOut} = useContext(User)
   const {dark} = useContext(DarkMode)
   const navigate = useNavigate()
   const token = localStorage.getItem("token")
+  const { t , i18n } = useTranslation("global")
+  const [ language, setLanguage] = useState("es")
+
+
+  const toggleLanguage = (lang) =>{
+    setLanguage(lang)
+    i18n.changeLanguage(lang)
+  }
+
 
   // const LogOut = async () => {
   //   localStorage.removeItem("token")
@@ -65,14 +75,20 @@ function Header() {
                 disabled={window.location.href=="http://localhost:3000/dashboard" ? "disabled" : ""}>
                 {window.location.href=="http://localhost:3000/dashboard" ? "En el muro" : "Ir al muro"}</button>
               </a>
-              <a href="/"><button className="header-btn signup-btn" onClick={LogOut}>Salir</button></a>
+              <a href="/"><button className="header-btn signup-btn" onClick={LogOut}>{t("header.header-exit")}</button></a>
           </div> 
         : 
           <div className="header-btns">
-              <a href="/signin"><button className="header-btn signin-btn">Iniciar sesión</button></a>
-              <a href="/signup"><button className="header-btn signup-btn">Crear cuenta</button></a>
+              <a href="/signin"><button className="header-btn signin-btn">{t("header.header-login")}</button></a>
+              <a href="/signup"><button className="header-btn signup-btn">{t("header.header-signup")}</button></a>
           </div>
         }
+        {language === 'es' && (
+        <button className='header-btn signin-btn' onClick={() => toggleLanguage('en')}>EN</button>
+      )}
+      {language === 'en' && (
+        <button className='header-btn signin-btn' onClick={() => toggleLanguage('es')}>ES</button>
+      )}
         
     </header>
   );

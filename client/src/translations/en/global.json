@@ -1,0 +1,18 @@
+{
+    "header" : {
+        "header-login" : "Log in",
+        "header-signup": "Register",
+        "header-exit": "Exit"
+    },
+    "hero": {
+        "hero-title":"Write whatever you want for free",
+        "hero-title2": "Welcome your blog",
+        "hero-button": "Make your first entry"
+    },
+    "signin": {
+        "signin-title": "Welcome",
+        "signin-button": "Log in",
+        "signin-text": "You do not have an account?",
+        "signin-text2": "Register here"
+    }
+}

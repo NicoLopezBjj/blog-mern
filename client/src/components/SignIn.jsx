@@ -5,6 +5,8 @@ import './css/clear.css'
 import './css/dark.css'
 import { Link, useNavigate } from 'react-router-dom';
 import { DarkMode } from '../context/DarkMode';
+import { useTranslation } from "react-i18next"
+
 
 function SignIn() {
   const [nombreOMail, setNombreOMail] = useState("")
@@ -12,6 +14,8 @@ function SignIn() {
   const {dark} = useContext(DarkMode)
   const navigate = useNavigate()
   const token = localStorage.getItem("token")
+  const { t , i18n } = useTranslation("global")
+
 
   const send = async (e) => {
     e.preventDefault()
@@ -22,14 +26,14 @@ function SignIn() {
   return (
     <div className="bg-1">
         <section className="font sign">
-            <h1>bienvenido.</h1>
+            <h1>{t("signin.signin-title")}</h1>
             <form onSubmit={send} className={dark ? "sign-form dark-sign-form" : "sign-form clear-sign-form"}>
               <h3>blog mern.</h3>
               <input type="text" placeholder="Nombre de usuario o e-mail" value={nombreOMail} onChange={(e)=>{setNombreOMail(e.target.value)}} maxLength="20"/>
               <input type="password" placeholder="Contraseña" value={password} onChange={(e)=>{setPassword(e.target.value)}} />
-              <button className="sign-btn signin-btn">Iniciar sesión</button>
+              <button className="sign-btn signin-btn">{t("signin.signin-button")}</button>
             </form>
-            <p>¿No tienes una cuenta? <Link to="/signup" className="underline">Regístrate aquí</Link></p>
+            <p>{t("signin.signin-text")} <Link to="/signup" className="underline">{t("signin.signin-text2")}</Link></p>
         </section>
     </div>
   );
