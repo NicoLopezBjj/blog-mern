@@ -1,0 +1,18 @@
+{
+    "header" : {
+        "header-login" : "Iniciar sesion",
+        "header-signup": "Crear cuenta",
+        "header-exit": "Salir"
+    },
+    "hero": {
+        "hero-title":"Escribe lo que quieras y gratis",
+        "hero-title2": "Bienvenido a tu blog",
+        "hero-button": "Haz tu primera entrada"
+    },
+    "signin": {
+        "signin-title": "Bienvenido",
+        "signin-button": "Iniciar sesion",
+        "signin-text": "¿No tienes una cuenta?",
+        "signin-text2": "Registrate aqui"
+    }
+}
