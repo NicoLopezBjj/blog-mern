@@ -10,6 +10,7 @@
   --strhov:#f77540;
   --clm:#FFB30B;
   --drk:#7a1e14;
+  --drkmd:#fccaac;
 }
 
 header, button, input, textarea, .font{
@@ -170,10 +171,6 @@ header h1{
   background-color:#333333;
 }
 
-.thumbnail:hover{
-  box-shadow:0 0 10px black;
-}
-
 .bg-1, .bg-2, .bg-3, .bg-4, .bg-5{
   background-size:cover;
   background-position:center;
@@ -206,12 +203,20 @@ header h1{
   background-image: url("../public/mod.svg");
 }
 
+.bg-dp{
+  background-color:#444444;
+}
+
 .prof{
   padding-bottom:6em;
 }
 
 .strhov{
   color: var(--strhov);
+}
+
+.drkmd{
+  color: var(--drkmd);
 }
 
 .hero{

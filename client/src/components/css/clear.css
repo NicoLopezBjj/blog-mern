@@ -21,3 +21,7 @@
 .clear-add-input, .clear-add-textarea{
     border:2px solid black;
 }
+
+.clear-thumbnail:hover{
+    box-shadow:0 0 10px black;
+  }

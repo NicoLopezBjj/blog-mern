@@ -5,15 +5,15 @@ import { useContext, useState } from 'react';
 import '../../App.css';
 import '../css/clear.css'
 import '../css/dark.css'
-import { User } from '../../context/User';
+import { DarkMode } from '../../context/DarkMode';
 
 function FriendThumbnail({name, img}) {
-  //const {user} = useContext(User)
+  const {dark} = useContext(DarkMode)
 
   return (
     <div className="thumbnail">
         <div className="thumbnail-header">
-            <h1 className="strhov">{name}</h1>
+            <h1 className={dark ? "drkmd" : "strhov"}>{name}</h1>
             <img src={img} alt="Imagen" className="friend-picture" />
         </div>
     </div>

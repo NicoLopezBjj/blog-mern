@@ -9,16 +9,27 @@ import Header from './parts/Header';
 import Comment from './parts/Comment';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { User } from '../context/User';
+import { DarkMode } from '../context/DarkMode';
 
 function Post() {
     const [post, setPost] = useState([])
     const [like, setLike] = useState(false)
     const [comments, setComments] = useState([]) //lista de comentarios
     const [comment, setComment] = useState("") //caja de comentario
+    const {dark, setDark} = useContext(DarkMode)
     const {user} = useContext(User)
     const {userId, postId} = useParams()
     let userLink = `/user/`
     const navigate = useNavigate()
+
+    useEffect(()=>{
+      const darkSt = localStorage.getItem("dark")
+      if(darkSt === "true"){
+        setDark(true)
+      }else{
+        setDark(false)
+      }
+    },[dark])
 
     useEffect(()=>{
       async function getPost(){
@@ -101,12 +112,12 @@ function Post() {
     }
 
   return (
-    <>
+    <div className={dark ? "bg-dp" : ""}>
         <Header/>
         <>
             {post.length > 0 ? 
             <>
-              <section className="font post">
+              <section className={dark ? "font post dark-post" : "font post"}>
                   <div className="post-header">
                     <h1>{post[0].title}</h1>
                     <h1><Link to={post != [] && post[0].username === user.name ? "/profile" : postUsername(post[0].user)} className="strhov underline">{post[0].username}</Link> | {post[0].date.slice(0,10)}, <span>{post[0].date.slice(11,16)}</span></h1>
@@ -122,7 +133,7 @@ function Post() {
                       <h3>{post[0].visits} {post[0].visits === 1 ? "visit" : "visits"}</h3>
                   </div>
               </section>
-              <section className="font comments">
+              <section className={dark ? "font comments dark-comments" : "font comments"}>
                 <h1>Comments</h1>
                 <hr />
                 <div className="comment-list">
@@ -143,7 +154,7 @@ function Post() {
             : 
             <p>"cargando"</p>}
         </>
-    </>
+    </div>
   );
 }
 

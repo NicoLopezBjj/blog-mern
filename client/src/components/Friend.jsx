@@ -13,7 +13,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 
 function Friend() {
   const {user} = useContext(User)
-  const {dark} = useContext(DarkMode)
+  const {dark, setDark} = useContext(DarkMode)
   const {userId} = useParams()
   const [thisUser, setUser] = useState([])
   const [userPosts, setUserPosts] = useState([])
@@ -37,6 +37,15 @@ function Friend() {
     getUser()
     getPosts()
   },[user])
+
+  useEffect(()=>{
+    const darkSt = localStorage.getItem("dark")
+    if(darkSt === "true"){
+      setDark(true)
+    }else{
+      setDark(false)
+    }
+  },[dark])
 
   const sentRequestFriend = async () => { 
       try{

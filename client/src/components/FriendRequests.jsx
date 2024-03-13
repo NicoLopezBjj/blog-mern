@@ -14,7 +14,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 
 function FriendRequests() {
   const {user, setUser} = useContext(User)
-  const {dark, set} = useContext(DarkMode)
+  const {dark, setDark} = useContext(DarkMode)
   const [sent, setSent] = useState([])
   const [received, setReceived] = useState([])
   const {requestId} = useParams()
@@ -39,6 +39,15 @@ function FriendRequests() {
       }
       getReceivedRequests()
   },[user])
+
+  useEffect(()=>{
+    const darkSt = localStorage.getItem("dark")
+    if(darkSt === "true"){
+      setDark(true)
+    }else{
+      setDark(false)
+    }
+  },[dark])
 
   return (
     <div className="bg-4 font prof">

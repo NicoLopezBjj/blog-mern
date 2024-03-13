@@ -60,7 +60,7 @@ function Request (){
     return (
         <div className="bg-5">
             <Header/>
-            <div className='ms-4'>
+            <div className='font ms-4'>
                 {request.length != [] ? 
                 <>
                 <section className={dark ? "post dark-bg" : "post clear-bg"}>
