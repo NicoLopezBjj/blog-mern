@@ -67,7 +67,7 @@ function FriendRequestFromThumbnail ({request_id, from, to}){
     return (
         <div className="thumbnail">
             <div className="thumbnail-header">
-                <h1 style={{marginRight:"0.3em"}}>Solicitud de: <Link to={friendLink} className="strhov underline">{userInfo != [] ? userInfo.name : "...."}</Link></h1>
+                <h1 style={{marginRight:"0.3em"}}>Solicitud de: <Link to={friendLink} className={dark ? "drkmd underline" : "strhov underline"}>{userInfo != [] ? userInfo.name : "...."}</Link></h1>
                 <div style={{display:"flex"}}>
                     <button className="header-btn signin-btn" onClick={()=> acceptRequest(request_id)}>{ok}</button>
                     <button className="header-btn signup-btn" >Rechazar solicitud</button>

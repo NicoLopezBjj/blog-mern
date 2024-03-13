@@ -1,0 +1,33 @@
+.dark-hero h1, .dark-hero h2{
+    text-shadow:0 1px 8px black;
+}
+
+.dark-add-post input, .dark-add-post textarea, .dark-comments textarea{
+    background-color: #555555;
+    color:#EEEEEE;
+}
+
+.dark-add-post input, .dark-add-post textarea{
+    border:2px solid white;
+}
+
+.dark-thumbnail:hover{
+    box-shadow:0 0 6px white;
+}
+
+.dark-comments textarea::placeholder{
+    color:#AAAAAA;
+}
+
+.dark-bg{
+    border:3px solid #555555;
+}
+
+.dark-bg, .dark-profile, .dark-dashboard, .dark-profile-posts, .dark-add-post{
+    background-color:#444444;
+    color:#DDDDDD;
+}
+
+.dark-thumbnail, .dark-add-post, .dark-post, .dark-comments, .dark-hero{
+    color:#EEEEEE;
+}

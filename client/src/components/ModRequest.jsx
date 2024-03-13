@@ -1,6 +1,6 @@
 //página para preguntarle a los mods o solicitar ser mod
 
-import { useState, useContext } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import '../App.css';
 import './css/clear.css'
@@ -12,11 +12,20 @@ import { Link, useNavigate } from 'react-router-dom';
 
 function ModRequest() {
   const {user} = useContext(User)
-  const {dark} = useContext(DarkMode)
+  const {dark, setDark} = useContext(DarkMode)
   const [mail, setMail] = useState("")
   const [body, setBody] = useState("")
   const [text, setText] = useState("Ambos campos son obligatorios para su solicitud.")
   const navigate = useNavigate()
+
+  useEffect(()=>{
+    const darkSt = localStorage.getItem("dark")
+    if(darkSt === "true"){
+      setDark(true)
+    }else{
+      setDark(false)
+    }
+  },[dark])
 
   const createRequest = async(e)=>{
     e.preventDefault()
@@ -57,6 +66,9 @@ function ModRequest() {
               <div className="add-post-form-button">
                 <Link><button className="add-btn signin-btn" onClick={createRequest}>Enviar solicitud</button></Link>
                 <Link to="/dashboard"><button type="button" className="add-btn signup-btn">Cancelar</button></Link>
+                <Link to="/mod/code"><button type="button" className="header-btn signup-btn">code</button></Link>
+                <Link to="/mod/requests"><button type="button" className="header-btn signup-btn">requests</button></Link>
+                <Link to="/sfsfsf"><button type="button" className="header-btn signup-btn">no page</button></Link>
               </div>
             </form>
         </section>

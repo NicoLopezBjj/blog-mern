@@ -62,7 +62,7 @@ function FriendRequestToThumbnail ({to}){
     return (
         <div className="thumbnail">
             <div className="thumbnail-header">
-                <h1 style={{marginRight:"0.3em"}}>Solicitud enviada a: <Link to={friendLink} className="strhov underline">{userInfo != [] ? userInfo.name : "...."}</Link></h1>
+                <h1 style={{marginRight:"0.3em"}}>Solicitud enviada a: <Link to={friendLink} className={dark ? "drkmd underline" : "strhov underline"}>{userInfo != [] ? userInfo.name : "...."}</Link></h1>
                 <button className="header-btn signup-btn">Cancelar solicitud</button>
             </div>
         </div>

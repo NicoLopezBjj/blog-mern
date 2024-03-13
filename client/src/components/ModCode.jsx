@@ -1,6 +1,6 @@
 //página para meter código y ser mod
 
-import { useState, useContext } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import '../App.css';
 import './css/clear.css'
@@ -12,11 +12,20 @@ import { Link, useNavigate } from 'react-router-dom';
 
 function ModCode() {
   const {user, setUser, LogOut} = useContext(User)
-  const {dark} = useContext(DarkMode)
+  const {dark, setDark} = useContext(DarkMode)
   const [code, setCode] = useState("")
   const [conf, setConf] = useState("")
   const [text, setText] = useState("Una vez que actualices el rol, deberás volver a iniciar sesión.")
   const navigate = useNavigate()
+
+  useEffect(()=>{
+    const darkSt = localStorage.getItem("dark")
+    if(darkSt === "true"){
+      setDark(true)
+    }else{
+      setDark(false)
+    }
+  },[dark])
 
   const sendCode = async(e) => {
     e.preventDefault()

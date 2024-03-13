@@ -13,9 +13,18 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 
 function MyFriends() {
   const {user} = useContext(User)
-  const {dark, set} = useContext(DarkMode)
+  const {dark, setDark} = useContext(DarkMode)
   const [friends, setFriends] = useState([])
   const {  } = useParams()
+
+  useEffect(()=>{
+    const darkSt = localStorage.getItem("dark")
+    if(darkSt === "true"){
+      setDark(true)
+    }else{
+      setDark(false)
+    }
+  },[dark])
 
    useEffect(()=>{
      console.log("get my friends")

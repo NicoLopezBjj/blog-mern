@@ -1,6 +1,6 @@
 //página para agregar post
 
-import { useState, useContext } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import '../App.css';
 import './css/clear.css'
@@ -12,10 +12,19 @@ import { Link, useNavigate } from 'react-router-dom';
 
 function AddPost() {
   const {user} = useContext(User)
-  const {dark} = useContext(DarkMode)
+  const {dark,setDark} = useContext(DarkMode)
   const [title, setTitle] = useState("")
   const [body, setBody] = useState("")
   const navigate = useNavigate()
+
+  useEffect(()=>{
+    const darkSt = localStorage.getItem("dark")
+    if(darkSt === "true"){
+      setDark(true)
+    }else{
+      setDark(false)
+    }
+  },[dark])
 
   const createPost = async(e)=>{
     e.preventDefault()

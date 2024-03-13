@@ -43,20 +43,22 @@ function App() {
   }
 
   function set(){
-    setDark(!dark)
+    const toggle = !dark
+    setDark(toggle)
+    localStorage.setItem("dark", toggle ? "true" : "false")
   }
 
   let body = document.querySelector("body")
   
   if(dark){ 
-    body.style.backgroundColor="#444444" 
+    body.style.backgroundColor="#222222" 
   }else{
     body.style.backgroundColor="white"
   }
 
   return (
     <User.Provider value={{user, setUser, LogOut}}>
-      <DarkMode.Provider value={{dark, set}}>
+      <DarkMode.Provider value={{dark, setDark, set}}>
         <PostData.Provider value={{likes,setLikes,visits,setVisits}}>
           <BrowserRouter>
             <Routes>

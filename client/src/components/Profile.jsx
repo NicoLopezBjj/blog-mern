@@ -10,17 +10,22 @@ import PostThumbnail_onProfile from './parts/PostThumbnail_onProfile';
 import { DarkMode } from '../context/DarkMode';
 import { User } from '../context/User';
 import { Link, useNavigate } from 'react-router-dom';
+import { useTranslation } from "react-i18next"
 
 function Profile() {
   const {user, setUser} = useContext(User)
-  const {dark, set} = useContext(DarkMode)
+  const {dark, setDark, set} = useContext(DarkMode)
   const [edit, setEdit] = useState(false)
   const [nombre,setNombre] = useState("")
   const [error,setError] = useState("")
   const [myPosts, setMyPosts] = useState([])
   const navigate = useNavigate()
-const storedbef = localStorage.getItem("user")
-//console.log(JSON.parse(storedbef))
+  const storedbef = localStorage.getItem("user")
+  const { t , i18n } = useTranslation("global")
+  const [ language, setLanguage] = useState("es")
+  console.log(dark)
+  console.log(localStorage.getItem("dark"))
+
   useEffect(()=>{
     console.log("get my posts")
     if(user){
@@ -55,6 +60,20 @@ const storedbef = localStorage.getItem("user")
     }
   }
 
+  useEffect(()=>{
+    const darkSt = localStorage.getItem("dark")
+    if(darkSt === "true"){
+      setDark(true)
+    }else{
+      setDark(false)
+    }
+  },[dark])
+
+  const toggleLanguage = (lang) =>{
+    setLanguage(lang)
+    i18n.changeLanguage(lang)
+  }
+
   return (
     <div className="bg-4 font prof">
         <Header/>
@@ -78,7 +97,10 @@ const storedbef = localStorage.getItem("user")
                 </div>
                 <div className="profile-modes">
                   <button className="hero-btn signup-btn" onClick={set}>{dark ? "Habilitar modo claro" : "Habilitar modo oscuro"}</button>
-                  <button className="hero-btn signin-btn">Cambiar idioma a inglés</button>
+                  {language === "es" ?
+                  <button className="hero-btn signin-btn" onClick={() => toggleLanguage('en')}>Cambiar idioma a inglés</button>
+                  :
+                  <button className="hero-btn signin-btn" onClick={() => toggleLanguage('es')}>Change language to spanish</button>}
                 </div>
               </div>
             </div>

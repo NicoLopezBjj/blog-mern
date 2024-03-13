@@ -12,11 +12,10 @@ import PostThumbnail from './parts/PostThumbnail';
 function Dashboard() {
   const {user} = useContext(User)
   const [posts, setPosts] = useState([])
-  const {dark} = useContext(DarkMode)
-  //console.log(user)
+  const {dark, setDark} = useContext(DarkMode)
 
   useEffect(()=>{
-    console.log("el dashboard")
+    //console.log("el dashboard")
     async function postsOnDashboard(){
       const petition = await axios.get('http://localhost:3001/p/all')
         console.log(petition.data)
@@ -27,6 +26,15 @@ function Dashboard() {
     }
     postsOnDashboard()
   },[user]) //user como dependencia. Si user es null este useEffect no se ejecuta, pero lo hace siempre que user sea una variable activa con un valor
+
+  useEffect(()=>{
+    const darkSt = localStorage.getItem("dark")
+    if(darkSt === "true"){
+      setDark(true)
+    }else{
+      setDark(false)
+    }
+  },[dark])
 
   // useEffect(()=>{
   //   async function auth(){
