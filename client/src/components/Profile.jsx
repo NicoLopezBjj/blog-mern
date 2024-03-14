@@ -84,7 +84,7 @@ function Profile() {
             </div>
             <div className="profile-section">
               <div className="profile-name">
-                <label>Editar nombre:</label>
+                <label>{t("profile.label")}</label>
                 <input type="text" placeholder={user ? user.name : "No name"} value={nombre} onChange={(e)=>{setNombre(e.target.value)}} disabled={edit ? "" : "disabled"} maxLength="20"/>
                 {edit && <button className="profile-btn save-profile-name bi bi-check-lg" onClick={update}></button>}
                 <button className="profile-btn edit-profile-name bi bi-pencil-square" onClick={()=>{setEdit(!edit)}}></button>
@@ -92,8 +92,8 @@ function Profile() {
               <div className="profile-align">
                 <p>{error}</p>
                 <div className="profile-role">
-                  <h3>En blog mern puedes convertirte en un moderador.</h3>
-                  {user && user.role == "user" ? <Link className="profile-request underline" to="/mod">Solicitar ser mod</Link> : <Link className="profile-request underline" to="/mod">Solicitar baja de mod</Link>}
+                  <h3>{t("profile.messageMod")}</h3>
+                  {user && user.role == "user" ? <Link className="profile-request underline" to="/mod">{t("profile.messageMod2")}</Link> : <Link className="profile-request underline" to="/mod">{t("profile.messageMod3")}</Link>}
                 </div>
                 <div className="profile-modes">
                   <button className="hero-btn signup-btn" onClick={set}>{dark ? "Habilitar modo claro" : "Habilitar modo oscuro"}</button>
@@ -107,12 +107,12 @@ function Profile() {
         </section>
         <section className={dark ? "font userboard dark-dashboard" : "font userboard clear-dashboard"}>
             <div className="dashboard-header">
-              <h1>Mis amigos</h1>
-              <Link to="/profile/friends"><button className="header-btn signup-btn">Ver mi lista de amigos</button></Link>
+              <h1>{t("profile.friendTitle")}</h1>
+              <Link to="/profile/friends"><button className="header-btn signup-btn">{t("profile.friendButton")}</button></Link>
             </div>
         </section>
         <div className={dark ? "profile-posts dark-profile-posts" : "profile-posts clear-profile-posts"}>
-          <h2 style={{textDecoration:"underline"}}>Mis entradas</h2>
+          <h2 style={{textDecoration:"underline"}}>{t("profile.postTitle")}</h2>
           {myPosts.length > 0 
             ? 
             myPosts.map((p)=>{
@@ -127,7 +127,7 @@ function Profile() {
                   comments={p.comments} /> 
             </Link>)})
             : 
-            <h2>En este momento no tienes ninguna entrada publicada.</h2>}
+            <h2>{t("profile.postMessage")}</h2>}
         </div>
     </div>
   );
