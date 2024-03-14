@@ -134,7 +134,7 @@ function Post() {
                   </div>
               </section>
               <section className={dark ? "font comments dark-comments" : "font comments"}>
-                <h1>Comments</h1>
+                <h1>{t("post.title")}</h1>
                 <hr />
                 <div className="comment-list">
                   {comments.length > 0 ? 
@@ -142,17 +142,17 @@ function Post() {
                       return <Comment key={c._id} id={c._id} user_id={c.user_id} username={c.username} comment={c.comment} date={c.date.slice(0,10)} time={c.date.slice(11,16)} likes={c.likes}/>
                     })
                   : 
-                    <h1>Todavía no hay comentarios. ¡Sé el primero en dejar un mensaje!</h1>
+                    <h1>{t("post.subtitle")}</h1>
                   }
                 </div>
                 <form action="" className="comment-form" onSubmit={sendComment}>
                   <textarea name="" id="" cols="30" rows="10" className="add-textarea comment-textarea" value={comment} onChange={(e)=>{setComment(e.target.value)}}></textarea>
-                  <button className="add-btn signin-btn">Enviar comentario</button>
+                  <button className="add-btn signin-btn">{t("post.button")}</button>
                 </form>
               </section>
             </>
             : 
-            <p>"cargando"</p>}
+            <p>{t("post.message")}</p>}
         </>
     </div>
   );

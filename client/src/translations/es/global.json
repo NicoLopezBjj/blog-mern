@@ -14,5 +14,45 @@
         "signin-button": "Iniciar sesion",
         "signin-text": "¿No tienes una cuenta?",
         "signin-text2": "Registrate aqui"
+    },
+    "signup":{
+        "title":"Escribe sin problemas",
+        "subtitle":"blog-mern",
+        "ph-name":"Nombre de usuario",
+        "ph-email":"Email",
+        "ph-password":"Contraseña",
+        "button":"Crear cuenta",
+        "message1":"¿Ya tienes una cuenta?",
+        "message2": "Inicia sesion aqui"
+    },
+    "profile":{
+        "label":"Editar nombre",
+        "messageMod":"En blog mern puedes convertirte en moderador de la pagina",
+        "messageMod2":"Solicitar ser mod",
+        "messageMod3":"Solicitar baja de mod",
+        "button1":"Habilitar modo oscuro",
+        "button2":"Cambiar idioma a ingles",
+        "friendTitle":"Mis amigos",
+        "friendButton":"Ver mi lista de amigos",
+        "postTitle":"Mis entradas",
+        "postMessage":"En este momento no tienes ninguna entrada"
+    },
+    "post":{
+        "title":"Comentarios",
+        "subtitle":"Todavía no hay comentarios. ¡Sé el primero en dejar un mensaje!",
+        "button":"Enviar comentario",
+        "message":"cargando"
+    },
+    "nopage":{
+        "title":"¡Oh, no! Lo sentimos.",
+        "subtitle":"La página por la que preguntaste no existe.",
+        "button":"Ir al muro"
+    },
+    "friends":{
+        "title":"Amigos",
+        "subtitle":"Solicitudes de amistad",
+        "button":"Ver",
+        "myFriends":"Mis amigos",
+        "titleNoFriends":"Todavía no tienes ningún amigo"
     }
 }

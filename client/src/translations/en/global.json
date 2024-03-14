@@ -14,5 +14,45 @@
         "signin-button": "Log in",
         "signin-text": "You do not have an account?",
         "signin-text2": "Register here"
+    },
+    "signup":{
+        "title":"Write without problems",
+        "subtitle":"blog-mern",
+        "ph-name":"Username",
+        "ph-email":"E-mail",
+        "ph-password":"Password",
+        "button":"Register",
+        "message1":"¿Do you have already an account?",
+        "message2":"Log in here"
+    },
+    "profile":{
+        "label":"Edit name",
+        "messageMod":"In blog mern you can become a mod",
+        "messageMod2":"Apply to be a mod",
+        "messageMod3":"Request deregistration of mod",
+        "button1":"Enable dark mode",
+        "button2":"Change languaje to english",
+        "friendTitle":"My friends",
+        "friendButton":"See my friend list ",
+        "postTitle":"My posts",
+        "postMessage":"At this momento you do not have any post"
+    },
+    "post":{
+        "title":"Comments",
+        "subtitle":"There are no comments yet, be the first to leave a message!",
+        "button":"Send comment",
+        "message":"loading"
+    },
+    "nopage":{
+        "title":"¡Oh, no! We're sorry",
+        "subtitle":"The page you asked about does not exist",
+        "button":"Go to the wall"
+    },
+    "friends":{
+        "title":"Friends",
+        "subtitle":"Friend requests",
+        "button":"See",
+        "myFriends":"My friends",
+        "titleNoFriends":"You still don't have any friends"
     }
 }

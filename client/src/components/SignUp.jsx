@@ -5,6 +5,8 @@ import './css/clear.css'
 import './css/dark.css'
 import { Link, useNavigate } from 'react-router-dom';
 import { DarkMode } from '../context/DarkMode';
+import { useTranslation } from "react-i18next"
+
 
 function SignUp() {
   const [nombre, setNombre] = useState("")
@@ -12,6 +14,8 @@ function SignUp() {
   const [password, setPassword] = useState("")
   const {dark} = useContext(DarkMode)
   const navigate = useNavigate()
+  const { t , i18n } = useTranslation("global")
+
 
   const create = (e) => {
     e.preventDefault()
@@ -21,15 +25,15 @@ function SignUp() {
   return (
     <div className="bg-2">
         <section className="font sign">
-            <h1>escribe sin problemas.</h1>
+            <h1>{t("signup.title")}</h1>
             <form onSubmit={create} className={dark ? "sign-form dark-sign-form" : "sign-form clear-sign-form"}>
-              <h3>blog mern.</h3>
-              <input type="text" placeholder="Nombre de usuario" value={nombre} onChange={(e)=>{setNombre(e.target.value)}} maxLength="20"/>
-              <input type="text" placeholder="E-mail" value={mail} onChange={(e)=>{setMail(e.target.value)}} />
-              <input type="password" placeholder="Contraseña" value={password} onChange={(e)=>{setPassword(e.target.value)}} maxLength="20"/>
-              <button className="sign-btn signin-btn">Crear cuenta</button>
+              <h3>{t("signup.subtitle")}</h3>
+              <input type="text" placeholder={t("signup.ph-name")} value={nombre} onChange={(e)=>{setNombre(e.target.value)}} maxLength="20"/>
+              <input type="text" placeholder={t("signup.ph-email")} value={mail} onChange={(e)=>{setMail(e.target.value)}} />
+              <input type="password" placeholder={t("signup.ph-password")} value={password} onChange={(e)=>{setPassword(e.target.value)}} maxLength="20"/>
+              <button className="sign-btn signin-btn">{t("signup.button")}</button>
             </form>
-            <p>¿Ya tienes una cuenta? <Link to="/signin" className="underline">Inicia sesión aquí</Link></p>
+            <p>{t("signup.message1")} <Link to="/signin" className="underline">{t("signup.message1")}</Link></p>
         </section>
     </div>
   );
