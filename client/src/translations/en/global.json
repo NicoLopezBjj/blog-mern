@@ -36,5 +36,23 @@
         "friendButton":"See my friend list ",
         "postTitle":"My posts",
         "postMessage":"At this momento you do not have any post"
+    },
+    "post":{
+        "title":"Comments",
+        "subtitle":"There are no comments yet, be the first to leave a message!",
+        "button":"Send comment",
+        "message":"loading"
+    },
+    "nopage":{
+        "title":"¡Oh, no! We're sorry",
+        "subtitle":"The page you asked about does not exist",
+        "button":"Go to the wall"
+    },
+    "friends":{
+        "title":"Friends",
+        "subtitle":"Friend requests",
+        "button":"See",
+        "myFriends":"My friends",
+        "titleNoFriends":"You still don't have any friends"
     }
 }

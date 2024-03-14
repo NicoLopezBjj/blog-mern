@@ -10,12 +10,15 @@ import FriendThumbnail from './parts/FriendThumbnail';
 import { DarkMode } from '../context/DarkMode';
 import { User } from '../context/User';
 import { Link, useNavigate, useParams } from 'react-router-dom';
+import { useTranslation } from "react-i18next"
 
 function MyFriends() {
   const {user} = useContext(User)
   const {dark, setDark} = useContext(DarkMode)
   const [friends, setFriends] = useState([])
   const {  } = useParams()
+  const { t , i18n } = useTranslation("global")
+
 
   useEffect(()=>{
     const darkSt = localStorage.getItem("dark")
@@ -44,16 +47,16 @@ function MyFriends() {
   return (
     <div className="bg-4 font prof">
         <Header/>
-        <h1 className="request-title">Amigos</h1>
+        <h1 className="request-title">{t("friends.title")}</h1>
         <section className={dark ? "font userboard dark-dashboard" : "font userboard clear-dashboard"}>
             <div className="dashboard-header">
-              <h1>Solicitudes de amistad</h1>
-              <Link to="/profile/friends/requests"><button className="header-btn signup-btn">Ver</button></Link>
+              <h1>{t("friends.subtitle")}</h1>
+              <Link to="/profile/friends/requests"><button className="header-btn signup-btn">{t("friends.button")}</button></Link>
             </div>
         </section>
         <section className={dark ? "font dashboard dark-dashboard" : "font dashboard clear-dashboard"}>
             <div className="dashboard-header">
-              <h1>Mis amigos</h1>
+              <h1>{t("friends.myFriends")}</h1>
             </div>
             <div className="posts">
               {friends.length > 0 ? 
@@ -64,7 +67,7 @@ function MyFriends() {
                         name= {f.name}
                         img= {f.image} />
                       </Link>)})
-                : <h1 style={{fontSize:"2rem",marginTop:"1em", marginLeft:"1.3em"}}>En este momento no tienes ningún amigo.</h1>
+                : <h1 style={{fontSize:"2rem",marginTop:"1em", marginLeft:"1.3em"}}>{t("friends.titleNoFriends")}</h1>
               }
             </div>
         </section>

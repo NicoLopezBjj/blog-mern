@@ -36,5 +36,23 @@
         "friendButton":"Ver mi lista de amigos",
         "postTitle":"Mis entradas",
         "postMessage":"En este momento no tienes ninguna entrada"
+    },
+    "post":{
+        "title":"Comentarios",
+        "subtitle":"Todavía no hay comentarios. ¡Sé el primero en dejar un mensaje!",
+        "button":"Enviar comentario",
+        "message":"cargando"
+    },
+    "nopage":{
+        "title":"¡Oh, no! Lo sentimos.",
+        "subtitle":"La página por la que preguntaste no existe.",
+        "button":"Ir al muro"
+    },
+    "friends":{
+        "title":"Amigos",
+        "subtitle":"Solicitudes de amistad",
+        "button":"Ver",
+        "myFriends":"Mis amigos",
+        "titleNoFriends":"Todavía no tienes ningún amigo"
     }
 }
