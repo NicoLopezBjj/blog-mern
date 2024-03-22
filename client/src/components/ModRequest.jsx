@@ -66,9 +66,9 @@ function ModRequest() {
               <div className="add-post-form-button">
                 <Link><button className="add-btn signin-btn" onClick={createRequest}>Enviar solicitud</button></Link>
                 <Link to="/dashboard"><button type="button" className="add-btn signup-btn">Cancelar</button></Link>
-                <Link to="/mod/code"><button type="button" className="header-btn signup-btn">code</button></Link>
+                {/* <Link to="/mod/code"><button type="button" className="header-btn signup-btn">code</button></Link>
                 <Link to="/mod/requests"><button type="button" className="header-btn signup-btn">requests</button></Link>
-                <Link to="/sfsfsf"><button type="button" className="header-btn signup-btn">no page</button></Link>
+                <Link to="/sfsfsf"><button type="button" className="header-btn signup-btn">no page</button></Link> */}
               </div>
             </form>
         </section>

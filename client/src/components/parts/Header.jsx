@@ -81,6 +81,8 @@ function Header() {
           <div className="header-btns">
               <a href="/signin"><button className="header-btn signin-btn">{t("header.header-login")}</button></a>
               <a href="/signup"><button className="header-btn signup-btn">{t("header.header-signup")}</button></a>
+              {language === "es" ? <button className='header-btn signin-btn' onClick={() => toggleLanguage('en')}>Cambiar idioma a inglés</button> :
+              <button className='header-btn signin-btn' onClick={() => toggleLanguage('es')}>Change language to spanish</button>}
           </div>
         }
         {/* {language === 'es' && (
