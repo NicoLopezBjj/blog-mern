@@ -2,12 +2,12 @@
 
 import { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
-import '../App.css';
-import './css/clear.css'
-import './css/dark.css'
-import { User } from '../context/User';
-import { DarkMode } from '../context/DarkMode';
-import Header from './parts/Header';
+import '../../App.css';
+import '../css/clear.css'
+import '../css/dark.css'
+import { User } from '../../context/User';
+import { DarkMode } from '../../context/DarkMode';
+import Header from '../parts/Header';
 import { Link, useNavigate } from 'react-router-dom';
 
 function ModRequest() {

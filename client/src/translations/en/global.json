@@ -2,11 +2,13 @@
     "header" : {
         "header-login" : "Log in",
         "header-signup": "Register",
-        "header-exit": "Exit"
+        "header-exit": "Exit",
+        "on-dashboard": "On the dashboard",
+        "go-dashboard": "Go to dashboard"
     },
     "hero": {
-        "hero-title":"Write whatever you want for free",
-        "hero-title2": "Welcome to your blog",
+        "hero-title":"Write whatever you want for free.",
+        "hero-title2": "Welcome to your blog.",
         "hero-button": "Make your first entry!"
     },
     "signin": {

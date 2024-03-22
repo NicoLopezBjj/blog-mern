@@ -2,14 +2,14 @@
 
 import { useState, useContext, useEffect } from 'react';
 import axios from 'axios';
-import '../App.css';
-import './css/clear.css'
-import './css/dark.css'
-import Header from './parts/Header';
-import FriendRequestFromThumbnail from './parts/FriendRequestFromThumbnail';
-import FriendRequestToThumbnail from './parts/FriendRequestToThumbnail';
-import { DarkMode } from '../context/DarkMode';
-import { User } from '../context/User';
+import '../../App.css';
+import '../css/clear.css'
+import '../css/dark.css'
+import Header from '../parts/Header';
+import FriendRequestFromThumbnail from '../parts/FriendRequestFromThumbnail';
+import FriendRequestToThumbnail from '../parts/FriendRequestToThumbnail';
+import { DarkMode } from '../../context/DarkMode';
+import { User } from '../../context/User';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 
 function FriendRequests() {

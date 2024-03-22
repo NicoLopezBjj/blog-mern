@@ -73,16 +73,18 @@ function Header() {
               <a href="/profile"><button className="header-btn signin-btn">{user.name}</button></a>
               <a href="/dashboard"><button className={window.location.href=="http://localhost:3000/dashboard" ? "header-btn signup-btn" : "header-btn signin-btn"} 
                 disabled={window.location.href=="http://localhost:3000/dashboard" ? "disabled" : ""}>
-                {window.location.href=="http://localhost:3000/dashboard" ? "En el muro" : "Ir al muro"}</button>
+                {window.location.href=="http://localhost:3000/dashboard" ? t("header.on-dashboard") : t("header.go-dashboard")}</button>
               </a>
               <a href="/"><button className="header-btn signup-btn" onClick={LogOut}>{t("header.header-exit")}</button></a>
+              {language === "es" ? <button className='header-btn signup-btn' onClick={() => toggleLanguage('en')}><img src="/es.png" width="20px" alt="" title="ES"></img></button> :
+              <button className='header-btn signup-btn' onClick={() => toggleLanguage('es')}><img src="/en.png" width="20px" alt="" title="EN"></img></button>}
           </div> 
         : 
           <div className="header-btns">
               <a href="/signin"><button className="header-btn signin-btn">{t("header.header-login")}</button></a>
               <a href="/signup"><button className="header-btn signup-btn">{t("header.header-signup")}</button></a>
-              {language === "es" ? <button className='header-btn signin-btn' onClick={() => toggleLanguage('en')}>Cambiar idioma a inglés</button> :
-              <button className='header-btn signin-btn' onClick={() => toggleLanguage('es')}>Change language to spanish</button>}
+              {language === "es" ? <button className='header-btn signup-btn' onClick={() => toggleLanguage('en')}><img src="/es.png" width="20px" alt="" title="ES"></img></button> :
+              <button className='header-btn signup-btn' onClick={() => toggleLanguage('es')}><img src="/en.png" width="20px" alt="" title="EN"></img></button>}
           </div>
         }
         {/* {language === 'es' && (

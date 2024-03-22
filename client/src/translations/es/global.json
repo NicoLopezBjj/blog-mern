@@ -1,19 +1,21 @@
 {
     "header" : {
-        "header-login" : "Iniciar sesion",
+        "header-login" : "Iniciar sesión",
         "header-signup": "Crear cuenta",
-        "header-exit": "Salir"
+        "header-exit": "Salir",
+        "on-dashboard": "En el muro",
+        "go-dashboard": "Ir al muro"
     },
     "hero": {
-        "hero-title":"Escribe lo que quieras y gratis",
-        "hero-title2": "Bienvenido a tu blog",
+        "hero-title":"Escribe lo que quieras y gratis.",
+        "hero-title2": "Bienvenido a tu blog.",
         "hero-button": "Haz tu primera entrada"
     },
     "signin": {
         "signin-title": "Bienvenido",
-        "signin-button": "Iniciar sesion",
+        "signin-button": "Iniciar sesión",
         "signin-text": "¿No tienes una cuenta?",
-        "signin-text2": "Registrate aqui"
+        "signin-text2": "Regístrate aqui"
     },
     "signup":{
         "title":"Escribe sin problemas",
