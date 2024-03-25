@@ -34,6 +34,8 @@
     },
     "profile":{
         "label":"Edit name",
+        "dark-mode":"Enable dark mode",
+        "clear-mode":"Disable dark mode",
         "messageMod":"In blog mern you can become a mod",
         "messageMod2":"Apply to be a mod",
         "messageMod3":"Request deregistration of mod",
@@ -42,7 +44,24 @@
         "friendTitle":"My friends",
         "friendButton":"See my list of friends",
         "postTitle":"My posts",
-        "postMessage":"You don't have any posts at the moment."
+        "postMessage":"You don't have any posts at the moment.",
+        "friend-requests":{
+            "header":"Friend requests",
+            "received":"Received requests: ",
+            "sent":"Sent requests: ",
+            "thumbnail":{
+                "from":{
+                    "title":"Request from: ",
+                    "accept":"Accept request",
+                    "reject":"Reject request",
+                    "ok":"Request accepted"
+                },
+                "to":{
+                    "title":"Request to: ",
+                    "cancel":"Cancel request"
+                }
+            }
+        }
     },
     "post":{
         "title":"Comments",
@@ -50,6 +69,8 @@
         "button":"Send comment",
         "message":"loading",
         "thumbnail-visits":"visits",
+        "thumbnail-comment":"comment",
+        "thumbnail-comments":"comments",
         "add":{
             "header":"Add an entry",
             "title":"Title:",
@@ -82,23 +103,6 @@
             "no-posts-2":" has no entries.",
             "send":"Send request",
             "sent":"Sent request"
-        },
-        "friend-requests":{
-            "header":"Friend requests",
-            "received":"Received requests: ",
-            "sent":"Sent requests: ",
-            "thumbnail":{
-                "from":{
-                    "title":"Request from: ",
-                    "accept":"Accept request",
-                    "reject":"Reject request",
-                    "ok":"Request accepted"
-                },
-                "to":{
-                    "title":"Request to: ",
-                    "cancel":"Cancel request"
-                }
-            }
         }
     },
     "mod-request":{

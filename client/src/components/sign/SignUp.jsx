@@ -14,7 +14,7 @@ function SignUp() {
   const [password, setPassword] = useState("")
   const {dark} = useContext(DarkMode)
   const navigate = useNavigate()
-  const { t , i18n } = useTranslation("global")
+  const { t } = useTranslation("global")
 
 
   const create = (e) => {

@@ -14,7 +14,7 @@ function SignIn() {
   const {dark} = useContext(DarkMode)
   const navigate = useNavigate()
   const token = localStorage.getItem("token")
-  const { t , i18n } = useTranslation("global")
+  const { t } = useTranslation("global")
 
 
   const send = async (e) => {

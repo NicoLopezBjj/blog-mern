@@ -34,6 +34,8 @@
     },
     "profile":{
         "label":"Editar nombre",
+        "dark-mode":"Habilitar modo oscuro",
+        "clear-mode":"Habilitar modo claro",
         "messageMod":"En blog mern puedes convertirte en moderador de la pagina",
         "messageMod2":"Solicitar ser mod",
         "messageMod3":"Solicitar baja de mod",
@@ -42,7 +44,24 @@
         "friendTitle":"Mis amigos",
         "friendButton":"Ver mi lista de amigos",
         "postTitle":"Mis entradas",
-        "postMessage":"En este momento no tienes ninguna entrada"
+        "postMessage":"En este momento no tienes ninguna entrada",
+        "friend-requests":{
+            "header":"Solicitudes de amistad",
+            "received":"Solicitudes recibidas: ",
+            "sent":"Solicitudes enviadas: ",
+            "thumbnail":{
+                "from":{
+                    "title":"Solicitud de: ",
+                    "accept":"Aceptar solicitud",
+                    "reject":"Rechazar solicitud",
+                    "ok":"Solicitud aceptada"
+                },
+                "to":{
+                    "title":"Solicitud enviada a: ",
+                    "cancel":"Cancelar solicitud"
+                }
+            }
+        }
     },
     "post":{
         "title":"Comentarios",
@@ -50,6 +69,8 @@
         "button":"Enviar comentario",
         "message":"cargando",
         "thumbnail-visits":"visitas",
+        "thumbnail-comment":"comentario",
+        "thumbnail-comments":"comentarios",
         "add":{
             "header":"Agregar entrada",
             "title":"Título:",
@@ -82,23 +103,6 @@
             "no-posts-2":" no tiene ninguna entrada publicada",
             "send":"Enviar solicitud de amistad",
             "sent":"Solicitud enviada"
-        },
-        "friend-requests":{
-            "header":"Solicitudes de amistad",
-            "received":"Solicitudes recibidas: ",
-            "sent":"Solicitudes enviadas: ",
-            "thumbnail":{
-                "from":{
-                    "title":"Solicitud de: ",
-                    "accept":"Aceptar solicitud",
-                    "reject":"Rechazar solicitud",
-                    "ok":"Solicitud aceptada"
-                },
-                "to":{
-                    "title":"Solicitud enviada a: ",
-                    "cancel":"Cancelar solicitud"
-                }
-            }
         }
     },
     "mod-request":{

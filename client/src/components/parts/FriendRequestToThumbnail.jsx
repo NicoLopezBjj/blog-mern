@@ -8,10 +8,12 @@ import { User } from '../../context/User';
 import { DarkMode } from '../../context/DarkMode';
 import Header from './Header';
 import { Link, useNavigate, useParams} from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 function FriendRequestToThumbnail ({to}){
     const {user} = useContext(User)
     const {dark} = useContext(DarkMode)
+    const { t } = useTranslation("global")
     const {userId,requestId} = useParams()
     const [userInfo, setUserInfo] = useState([])
     const friendLink = `/user/${to}`
@@ -62,8 +64,8 @@ function FriendRequestToThumbnail ({to}){
     return (
         <div className="thumbnail">
             <div className="thumbnail-header">
-                <h1 style={{marginRight:"0.3em"}}>Solicitud enviada a: <Link to={friendLink} className={dark ? "drkmd underline" : "strhov underline"}>{userInfo != [] ? userInfo.name : "...."}</Link></h1>
-                <button className="header-btn signup-btn">Cancelar solicitud</button>
+                <h1 style={{marginRight:"0.3em"}}>{t("friends.friend-requests.thumbnail.to.title")}<Link to={friendLink} className={dark ? "drkmd underline" : "strhov underline"}>{userInfo != [] ? userInfo.name : "...."}</Link></h1>
+                <button className="header-btn signup-btn">{t("friends.friend-requests.thumbnail.to.cancel")}</button>
             </div>
         </div>
     );

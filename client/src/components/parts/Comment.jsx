@@ -7,6 +7,7 @@ import '../css/clear.css'
 import '../css/dark.css'
 import { Link, useParams } from 'react-router-dom';
 import { User } from '../../context/User';
+import { useTranslation } from 'react-i18next';
 
 function Comment({id, user_id, username, comment, date, time, likes}) {
   const [like, setLike] = useState(false)
@@ -17,6 +18,7 @@ function Comment({id, user_id, username, comment, date, time, likes}) {
   const {user} = useContext(User)
   const {userId, postId, commentId} = useParams()
   const userLink = `/user/${user_id}`
+  const { t } = useTranslation("global")
 
   useEffect(()=>{
     console.log("lo hace!!!")
@@ -94,7 +96,7 @@ function Comment({id, user_id, username, comment, date, time, likes}) {
           <textarea name="" id="" cols="30" rows="10" className="add-textarea comment-textarea" 
           style={{marginTop:"1em",marginLeft:"1em", width:"97%"}} value={editedComment} onChange={(e)=>{setEditedComment(e.target.value)}}
           placeholder={comment}></textarea>
-          <button className="add-btn signin-btn">Editar comentario</button>
+          <button className="add-btn signin-btn">{t("comment.edit")}</button>
         </form>
       </div>
       : 
@@ -116,9 +118,9 @@ function Comment({id, user_id, username, comment, date, time, likes}) {
           {user.role == "admin" && username != user.name && <button className="like liked comment-edition" onClick={()=>{setDelete(true)}}><i class="bi bi-trash3"></i></button>}
         </div>
         {dlt && <div className="dlt">
-            <h3>¿Está seguro de que quiere eliminar este comentario?</h3>
+            <h3>{t("comment.edition.sure")}</h3>
             <div className="dlt-btn">
-              <button className="hero-btn signin-btn" onClick={deleteComment}>Si</button>
+              <button className="hero-btn signin-btn" onClick={deleteComment}>{t("comment.edition.yes")}</button>
               <button className="hero-btn signup-btn" onClick={exit}>No</button>
             </div>
           </div>}

@@ -11,6 +11,7 @@ import FriendRequestToThumbnail from '../parts/FriendRequestToThumbnail';
 import { DarkMode } from '../../context/DarkMode';
 import { User } from '../../context/User';
 import { Link, useNavigate, useParams } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 function FriendRequests() {
   const {user, setUser} = useContext(User)
@@ -18,6 +19,7 @@ function FriendRequests() {
   const [sent, setSent] = useState([])
   const [received, setReceived] = useState([])
   const {requestId} = useParams()
+  const { t } = useTranslation("global")
   const id = JSON.parse(localStorage.getItem("user"))._id
 
   useEffect(()=>{
@@ -52,10 +54,10 @@ function FriendRequests() {
   return (
     <div className="bg-4 font prof">
         <Header/>
-        <h1 className="request-title">Solicitudes de amistad</h1>
+        <h1 className="request-title">{t("profile.friend-requests.header")}</h1>
         <section className={dark ? "profile dark-profile" : "profile clear-profile"}>
             <div className="profile-header">
-                <h2>Solicitudes recibidas: {received.length}</h2>
+                <h2>{t("profile.friend-requests.received")}{received.length}</h2>
             </div>
             <div className="profile-section">
               {received.length > 0 ? 
@@ -67,7 +69,7 @@ function FriendRequests() {
         </section>
         <section className={dark ? "profile dark-profile" : "profile clear-profile"}>
             <div className="profile-header">
-                <h2>Solicitudes enviadas: {sent.length}</h2>
+                <h2>{t("profile.friend-requests.sent")}{sent.length}</h2>
             </div>
             <div className="profile-section">
             {sent.length > 0 ? 
