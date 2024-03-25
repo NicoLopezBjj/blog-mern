@@ -8,11 +8,13 @@ import { DarkMode } from '../context/DarkMode';
 import { User } from '../context/User';
 import Header from './parts/Header';
 import PostThumbnail from './parts/PostThumbnail';
+import { useTranslation } from 'react-i18next';
 
 function Dashboard() {
   const {user} = useContext(User)
   const [posts, setPosts] = useState([])
   const {dark, setDark} = useContext(DarkMode)
+  const { t } = useTranslation("global")
 
   useEffect(()=>{
     //console.log("el dashboard")
@@ -49,8 +51,8 @@ function Dashboard() {
         <Header/>
         <section className={dark ? "font dashboard dark-dashboard" : "font dashboard clear-dashboard"}>
             <div className="dashboard-header">
-              <h1>Muro</h1>
-              <Link to="/add"><button className="header-btn signup-btn">Agregar entrada</button></Link>
+              <h1>{t("dashboard.header")}</h1>
+              <Link to="/add"><button className="header-btn signup-btn">{t("dashboard.add-post")}</button></Link>
             </div>
             <div className="posts">
               {/* posts.map return (<Link to=`/p.user/p._id`><PostThumbnail c props /></Link>) */}
@@ -68,7 +70,7 @@ function Dashboard() {
                         comments={p.comments} /> 
                       </Link>)
                   }) 
-                : <h1 style={{fontSize:"2rem",marginTop:"1em", marginLeft:"1.3em"}}>En este momento no hay ningún post en tu muro.</h1>}
+                : <h1 style={{fontSize:"2rem",marginTop:"1em", marginLeft:"1.3em"}}>{t("dashboard.no-posts")}</h1>}
             </div>
         </section>
     </div>

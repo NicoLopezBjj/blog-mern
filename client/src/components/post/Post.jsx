@@ -2,14 +2,15 @@
 
 import { useContext, useState, useEffect } from 'react';
 import axios from 'axios';
-import '../App.css';
-import './css/clear.css'
-import './css/dark.css'
-import Header from './parts/Header';
-import Comment from './parts/Comment';
+import '../../App.css';
+import '../css/clear.css'
+import '../css/dark.css'
+import Header from '../parts/Header';
+import Comment from '../parts/Comment';
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import { User } from '../context/User';
-import { DarkMode } from '../context/DarkMode';
+import { User } from '../../context/User';
+import { DarkMode } from '../../context/DarkMode';
+import { useTranslation } from "react-i18next"
 
 function Post() {
     const [post, setPost] = useState([])
@@ -21,6 +22,7 @@ function Post() {
     const {userId, postId} = useParams()
     let userLink = `/user/`
     const navigate = useNavigate()
+    const { t } = useTranslation("global")
 
     useEffect(()=>{
       const darkSt = localStorage.getItem("dark")

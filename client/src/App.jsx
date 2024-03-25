@@ -7,20 +7,20 @@ import { Translate } from './context/Translate'
 import { User } from './context/User'
 import { PostData } from './context/PostData'
 import Hero from './components/Hero';
-import SignIn from './components/SignIn';
-import SignUp from './components/SignUp';
+import NoPage from './components/NoPage';
 import Dashboard from './components/Dashboard';
-import Profile from './components/Profile';
-import Friend from './components/Friend';
-import MyFriends from './components/MyFriends';
-import FriendRequests from './components/FriendRequests';
-import AddPost from './components/AddPost';
-import Post from './components/Post';
-import ModRequest from './components/ModRequest';
-import ModCode from './components/ModCode';
+import SignIn from './components/sign/SignIn';
+import SignUp from './components/sign/SignUp';
+import Profile from './components/profile/Profile';
+import MyFriends from './components/profile/MyFriends';
+import FriendRequests from './components/profile/FriendRequests';
+import Friend from './components/friends/Friend';
+import AddPost from './components/post/AddPost';
+import Post from './components/post/Post';
+import ModRequest from './components/mod_request/ModRequest';
+import ModCode from './components/mod_request/ModCode';
 import Requests from './components/admin/Requests'
 import Request from './components/admin/Request';
-import NoPage from './components/NoPage';
 
 function App() {
   const [dark, setDark] = useState(false)

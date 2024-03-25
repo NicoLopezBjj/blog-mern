@@ -7,13 +7,15 @@ import '../css/dark.css'
 import { User } from '../../context/User';
 import { DarkMode } from '../../context/DarkMode';
 import { Link, useParams } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 function FriendRequestFromThumbnail ({request_id, from, to}){
     const {dark} = useContext(DarkMode)
     const {user} = useContext(User)
+    const { t } = useTranslation("global")
     const [userInfo, setUserInfo] = useState([])
     const friendLink = `/user/${from}`
-    const [ok, setOk] = useState("Aceptar solicitud")
+    const [ok, setOk] = useState(t("profile.friend-requests.thumbnail.from.accept"))
 
     useEffect(()=>{
         console.log("entro")
@@ -34,7 +36,7 @@ function FriendRequestFromThumbnail ({request_id, from, to}){
         try{
             await axios.post(`http://localhost:3001/u/${userInfo._id}/add-friend`,  { withCredentials:true ,requestId : request_id , userFront : to})
             console.log(request_id)
-            setOk('Solicitud aceptada')
+            setOk(t("profile.friend-requests.thumbnail.from.ok"))
         }catch(e){
             console.log(request_id)
             console.log('error accepting friend request',e)}
@@ -67,10 +69,10 @@ function FriendRequestFromThumbnail ({request_id, from, to}){
     return (
         <div className="thumbnail">
             <div className="thumbnail-header">
-                <h1 style={{marginRight:"0.3em"}}>Solicitud de: <Link to={friendLink} className={dark ? "drkmd underline" : "strhov underline"}>{userInfo != [] ? userInfo.name : "...."}</Link></h1>
+                <h1 style={{marginRight:"0.3em"}}>{t("profile.friend-requests.thumbnail.from.title")}<Link to={friendLink} className={dark ? "drkmd underline" : "strhov underline"}>{userInfo != [] ? userInfo.name : "...."}</Link></h1>
                 <div style={{display:"flex"}}>
                     <button className="header-btn signin-btn" onClick={()=> acceptRequest(request_id)}>{ok}</button>
-                    <button className="header-btn signup-btn" >Rechazar solicitud</button>
+                    <button className="header-btn signup-btn">{t("profile.friend-requests.thumbnail.from.reject")}</button>
                 </div>
             </div>
         </div>

@@ -2,13 +2,14 @@
 
 import { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
-import '../App.css';
-import './css/clear.css'
-import './css/dark.css'
-import { User } from '../context/User';
-import { DarkMode } from '../context/DarkMode';
-import Header from './parts/Header';
+import '../../App.css';
+import '../css/clear.css'
+import '../css/dark.css'
+import { User } from '../../context/User';
+import { DarkMode } from '../../context/DarkMode';
+import Header from '../parts/Header';
 import { Link, useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 function AddPost() {
   const {user} = useContext(User)
@@ -16,6 +17,7 @@ function AddPost() {
   const [title, setTitle] = useState("")
   const [body, setBody] = useState("")
   const navigate = useNavigate()
+  const { t } = useTranslation("global")
 
   useEffect(()=>{
     const darkSt = localStorage.getItem("dark")
@@ -37,20 +39,20 @@ function AddPost() {
     <div className="bg-3">
         <Header/>
         <section className={dark ? "font add-post dark-add-post" : "font add-post clear-add-post"}>
-            <h1>Agregar entrada</h1>
+            <h1>{t("post.add.header")}</h1>
             <form className="add-post-form" onSubmit={createPost}>
               <div className="add-post-form-section">
-                <label htmlFor="">Título:</label>
+                <label htmlFor="">{t("post.add.title")}</label>
                 <input type="text" className={dark ? "add-input dark-add-input" : "add-input clear-add-input"} value={title} onChange={(e)=>{setTitle(e.target.value)}}/>
               </div>
               <div className="add-post-form-section">
-                <label htmlFor="">Mensaje:</label>
+                <label htmlFor="">{t("post.add.message")}</label>
                 <textarea name="" id="" cols="30" rows="10" className={dark ? "add-textarea dark-add-textarea" : "add-textarea clear-add-textarea"}
                   value={body} onChange={(e)=>{setBody(e.target.value)}} ></textarea>
               </div>
               <div className="add-post-form-button">
-                <button className="add-btn signin-btn">Subir</button>
-                <Link to="/dashboard"><button className="add-btn signup-btn">Cancelar</button></Link>
+                <button className="add-btn signin-btn">{t("post.add.post")}</button>
+                <Link to="/dashboard"><button className="add-btn signup-btn">{t("post.add.cancel")}</button></Link>
               </div>
             </form>
         </section>

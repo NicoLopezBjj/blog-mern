@@ -1,10 +1,10 @@
 import { useContext, useState } from 'react';
 import axios from "axios"
-import '../App.css';
-import './css/clear.css'
-import './css/dark.css'
+import '../../App.css';
+import '../css/clear.css'
+import '../css/dark.css'
 import { Link, useNavigate } from 'react-router-dom';
-import { DarkMode } from '../context/DarkMode';
+import { DarkMode } from '../../context/DarkMode';
 import { useTranslation } from "react-i18next"
 
 
@@ -14,7 +14,7 @@ function SignUp() {
   const [password, setPassword] = useState("")
   const {dark} = useContext(DarkMode)
   const navigate = useNavigate()
-  const { t , i18n } = useTranslation("global")
+  const { t } = useTranslation("global")
 
 
   const create = (e) => {

@@ -1,19 +1,21 @@
 {
     "header" : {
-        "header-login" : "Iniciar sesion",
+        "header-login" : "Iniciar sesión",
         "header-signup": "Crear cuenta",
-        "header-exit": "Salir"
+        "header-exit": "Salir",
+        "on-dashboard": "En el muro",
+        "go-dashboard": "Ir al muro"
     },
     "hero": {
-        "hero-title":"Escribe lo que quieras y gratis",
-        "hero-title2": "Bienvenido a tu blog",
+        "hero-title":"Escribe lo que quieras y gratis.",
+        "hero-title2": "Bienvenido a tu blog.",
         "hero-button": "Haz tu primera entrada"
     },
     "signin": {
         "signin-title": "Bienvenido",
-        "signin-button": "Iniciar sesion",
+        "signin-button": "Iniciar sesión",
         "signin-text": "¿No tienes una cuenta?",
-        "signin-text2": "Registrate aqui"
+        "signin-text2": "Regístrate aqui"
     },
     "signup":{
         "title":"Escribe sin problemas",
@@ -25,8 +27,15 @@
         "message1":"¿Ya tienes una cuenta?",
         "message2": "Inicia sesion aqui"
     },
+    "dashboard":{
+        "header":"Muro",
+        "add-post":"Agregar entrada",
+        "no-posts":"En este momento no hay ningún post en tu muro."
+    },
     "profile":{
         "label":"Editar nombre",
+        "dark-mode":"Habilitar modo oscuro",
+        "clear-mode":"Habilitar modo claro",
         "messageMod":"En blog mern puedes convertirte en moderador de la pagina",
         "messageMod2":"Solicitar ser mod",
         "messageMod3":"Solicitar baja de mod",
@@ -35,13 +44,47 @@
         "friendTitle":"Mis amigos",
         "friendButton":"Ver mi lista de amigos",
         "postTitle":"Mis entradas",
-        "postMessage":"En este momento no tienes ninguna entrada"
+        "postMessage":"En este momento no tienes ninguna entrada",
+        "friend-requests":{
+            "header":"Solicitudes de amistad",
+            "received":"Solicitudes recibidas: ",
+            "sent":"Solicitudes enviadas: ",
+            "thumbnail":{
+                "from":{
+                    "title":"Solicitud de: ",
+                    "accept":"Aceptar solicitud",
+                    "reject":"Rechazar solicitud",
+                    "ok":"Solicitud aceptada"
+                },
+                "to":{
+                    "title":"Solicitud enviada a: ",
+                    "cancel":"Cancelar solicitud"
+                }
+            }
+        }
     },
     "post":{
         "title":"Comentarios",
         "subtitle":"Todavía no hay comentarios. ¡Sé el primero en dejar un mensaje!",
         "button":"Enviar comentario",
-        "message":"cargando"
+        "message":"cargando",
+        "thumbnail-visits":"visitas",
+        "thumbnail-comment":"comentario",
+        "thumbnail-comments":"comentarios",
+        "add":{
+            "header":"Agregar entrada",
+            "title":"Título:",
+            "message":"Mensaje:",
+            "post":"Subir",
+            "cancel":"Cancelar"
+        }
+    },
+    "comment":{
+        "edit":"Editar comentario",
+        "edition":{
+            "sure":"¿Está seguro de que quiere eliminar este comentario?",
+            "yes":"Si"
+        }
     },
     "nopage":{
         "title":"¡Oh, no! Lo sentimos.",
@@ -53,6 +96,54 @@
         "subtitle":"Solicitudes de amistad",
         "button":"Ver",
         "myFriends":"Mis amigos",
-        "titleNoFriends":"Todavía no tienes ningún amigo"
+        "titleNoFriends":"Todavía no tienes ningún amigo",
+        "friend-profile":{
+            "entries":"Entradas de ",
+            "no-posts-1":"En este momento ",
+            "no-posts-2":" no tiene ninguna entrada publicada",
+            "send":"Enviar solicitud de amistad",
+            "sent":"Solicitud enviada"
+        }
+    },
+    "mod-request":{
+        "request":{
+            "header":"¿Quieres ser mod?",
+            "explain":"Explica por qué quieres ser mod:",
+            "send":"Enviar solicitud",
+            "cancel":"Cancelar"
+        },
+        "code":{
+            "header":"Inserción de código de mod",
+            "p-1":"Si estás en esta página significa que fuiste seleccionado para formar parte del equipo de mods de blog mern. Escribe el código que te ha sido enviado por mail para actualizar tu rol y convertirte en un nuevo moderador de la página.",
+            "label-1":"Inserte su código aquí:",
+            "label-2":"Confirme su código escribiéndolo de nuevo aquí:",
+            "important":"IMPORTANTE: ",
+            "p-2":"Tener el rol de mod implica cumplir una cierta lista de reglas para mantener el orden de la página. Si haces algo que va en contra de las normas de blog mern se te revocará el rol.",
+            "update":"Actualizar rol",
+            "text":{
+                "text":"Una vez que actualices el rol, deberás volver a iniciar sesión.",
+                "incomplete":"Por favor, ingrese el código en ambos campos.",
+                "ok":"Rol actualizado. Muchas gracias por tu solicitud.",
+                "error":"Error: Los códigos ingresados no coinciden. Por favor, escríbalos de manera adecuada."
+
+            }
+        }
+    },
+    "mod":{
+        "user-moderation":{
+            "header":"Lista de usuarios",
+            "admin":"Administrar",
+            "moderation":""
+        },
+        "requests-list":{
+            "header":"Solicitudes",
+            "no-requests":"En este momento no hay ninguna solicitud."
+        },
+        "request":{
+            "thumbnail-title":"Solicitud de: ",
+            "important":"IMPORTANTE: ",
+            "p-1":"Aceptar la solicitud significa darle el rol de mod/administrador a un usuario que no lo es. Antes de tomar una decisión, verifica el cuerpo de esta solicitud y los siguientes datos del usuario: PERFIL, ENTRADAS, COMENTARIOS y AMIGOS.",
+            "p-2":"Si aceptas la solicitud y el mod elegido termina dañando a la página o a terceros relacionados, será TU responsabilidad."
+        }
     }
 }

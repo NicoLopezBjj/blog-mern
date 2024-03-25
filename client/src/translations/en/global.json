@@ -2,18 +2,20 @@
     "header" : {
         "header-login" : "Log in",
         "header-signup": "Register",
-        "header-exit": "Exit"
+        "header-exit": "Exit",
+        "on-dashboard": "On the dashboard",
+        "go-dashboard": "Go to dashboard"
     },
     "hero": {
-        "hero-title":"Write whatever you want for free",
-        "hero-title2": "Welcome your blog",
-        "hero-button": "Make your first entry"
+        "hero-title":"Write whatever you want for free.",
+        "hero-title2": "Welcome to your blog.",
+        "hero-button": "Make your first entry!"
     },
     "signin": {
         "signin-title": "Welcome",
         "signin-button": "Log in",
-        "signin-text": "You do not have an account?",
-        "signin-text2": "Register here"
+        "signin-text": "Don't you have an account?",
+        "signin-text2": "Sign up here"
     },
     "signup":{
         "title":"Write without problems",
@@ -22,37 +24,126 @@
         "ph-email":"E-mail",
         "ph-password":"Password",
         "button":"Register",
-        "message1":"¿Do you have already an account?",
+        "message1":"Do you have already an account?",
         "message2":"Log in here"
+    },
+    "dashboard":{
+        "header":"Dashboard",
+        "add-post":"Add an entry",
+        "no-posts":"You don't have any posts at the moment."
     },
     "profile":{
         "label":"Edit name",
+        "dark-mode":"Enable dark mode",
+        "clear-mode":"Disable dark mode",
         "messageMod":"In blog mern you can become a mod",
         "messageMod2":"Apply to be a mod",
         "messageMod3":"Request deregistration of mod",
         "button1":"Enable dark mode",
-        "button2":"Change languaje to english",
+        "button2":"Change language to english",
         "friendTitle":"My friends",
-        "friendButton":"See my friend list ",
+        "friendButton":"See my list of friends",
         "postTitle":"My posts",
-        "postMessage":"At this momento you do not have any post"
+        "postMessage":"You don't have any posts at the moment.",
+        "friend-requests":{
+            "header":"Friend requests",
+            "received":"Received requests: ",
+            "sent":"Sent requests: ",
+            "thumbnail":{
+                "from":{
+                    "title":"Request from: ",
+                    "accept":"Accept request",
+                    "reject":"Reject request",
+                    "ok":"Request accepted"
+                },
+                "to":{
+                    "title":"Request to: ",
+                    "cancel":"Cancel request"
+                }
+            }
+        }
     },
     "post":{
         "title":"Comments",
-        "subtitle":"There are no comments yet, be the first to leave a message!",
+        "subtitle":"There are no comments yet, you can leave a message!",
         "button":"Send comment",
-        "message":"loading"
+        "message":"loading",
+        "thumbnail-visits":"visits",
+        "thumbnail-comment":"comment",
+        "thumbnail-comments":"comments",
+        "add":{
+            "header":"Add an entry",
+            "title":"Title:",
+            "message":"Message:",
+            "post":"Post",
+            "cancel":"Cancel"
+        }
+    },
+    "comment":{
+        "edit":"Edit comment",
+        "edition":{
+            "sure":"Are you sure that you want to delete this comment?",
+            "yes":"Yes"
+        }
     },
     "nopage":{
-        "title":"¡Oh, no! We're sorry",
-        "subtitle":"The page you asked about does not exist",
-        "button":"Go to the wall"
+        "title":"Oh, no! We're sorry",
+        "subtitle":"The page you asked for does not exist.",
+        "button":"Go to the dashboard"
     },
     "friends":{
         "title":"Friends",
         "subtitle":"Friend requests",
-        "button":"See",
+        "button":"Look",
         "myFriends":"My friends",
-        "titleNoFriends":"You still don't have any friends"
+        "titleNoFriends":"You still don't have any friends",
+        "friend-profile":{
+            "entries":"Entries of ",
+            "no-posts-1":"At this moment ",
+            "no-posts-2":" has no entries.",
+            "send":"Send request",
+            "sent":"Sent request"
+        }
+    },
+    "mod-request":{
+        "request":{
+            "header":"Do you want to be a mod?",
+            "explain":"Explain why do you want to be a mod:",
+            "send":"Send mod request",
+            "cancel":"Cancel"
+        },
+        "code":{
+            "header":"Mod code insertion",
+            "p-1":"If you are on this page, this means you were selected to be part of blog mern's mod crew. Please type in the code that you have received by e-mail to finally update your role and become a new mod.",
+            "label-1":"Insert your code here:",
+            "label-2":"Confirm your code by typing it again here:",
+            "important":"IMPORTANT: ",
+            "p-2":"Having a mod role means that you will have to maintain order and follow the main rules of this page. If you do something that goes against them your role will be immediately taken off of you.",
+            "update":"Update role",
+            "text":{
+                "text":"Once your role is updated, you will have to log in again.",
+                "incomplete":"Please, insert the code in both input fields.",
+                "ok":"Role has been updated. Thanks for your request.",
+                "error":"Error: Inserted codes do not match. Please, type them in correctly."
+
+            }
+        }
+    },
+    "mod":{
+        "user-moderation":{
+            "header":"List of users",
+            "admin":"Manage",
+            "moderation":""
+        },
+        "requests-list":{
+            "header":"Mod requests",
+            "no-requests":"You don't have any requests at this moment."
+        },
+        "request":{
+            "thumbnail-title":"Request from: ",
+            "important":"IMPORTANT: ",
+            "p-1":"If you accept this request, you will turn this normal user into a mod. Please verify the user's account and intentions before taking a decision including PROFILE, ENTRIES, COMMENTS and FRIENDS.",
+            "p-2":"If this user turned into a mod ends up doing something against the page or others, it will be YOUR responsibility."
+        }
     }
 }

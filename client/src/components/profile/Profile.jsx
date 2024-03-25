@@ -2,13 +2,13 @@
 
 import { useState, useContext, useEffect } from 'react';
 import axios from 'axios';
-import '../App.css';
-import './css/clear.css'
-import './css/dark.css'
-import Header from './parts/Header';
-import PostThumbnail_onProfile from './parts/PostThumbnail_onProfile';
-import { DarkMode } from '../context/DarkMode';
-import { User } from '../context/User';
+import '../../App.css';
+import '../css/clear.css'
+import '../css/dark.css'
+import Header from '../parts/Header';
+import PostThumbnail_onProfile from '../parts/PostThumbnail_onProfile';
+import { DarkMode } from '../../context/DarkMode';
+import { User } from '../../context/User';
 import { Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from "react-i18next"
 
@@ -21,7 +21,7 @@ function Profile() {
   const [myPosts, setMyPosts] = useState([])
   const navigate = useNavigate()
   const storedbef = localStorage.getItem("user")
-  const { t , i18n } = useTranslation("global")
+  const { t } = useTranslation("global")
   const [ language, setLanguage] = useState("es")
   console.log(dark)
   console.log(localStorage.getItem("dark"))
@@ -96,11 +96,11 @@ function Profile() {
                   {user && user.role == "user" ? <Link className="profile-request underline" to="/mod">{t("profile.messageMod2")}</Link> : <Link className="profile-request underline" to="/mod">{t("profile.messageMod3")}</Link>}
                 </div>
                 <div className="profile-modes">
-                  <button className="hero-btn signup-btn" onClick={set}>{dark ? "Habilitar modo claro" : "Habilitar modo oscuro"}</button>
-                  {language === "es" ?
+                  <button className="hero-btn signup-btn" onClick={set}>{dark ? t("profile.clear-mode") : t("profile.dark-mode")}</button>
+                  {/* {language === "es" ?
                   <button className="hero-btn signin-btn" onClick={() => toggleLanguage('en')}>Cambiar idioma a inglés</button>
                   :
-                  <button className="hero-btn signin-btn" onClick={() => toggleLanguage('es')}>Change language to spanish</button>}
+                  <button className="hero-btn signin-btn" onClick={() => toggleLanguage('es')}>Change language to spanish</button>} */}
                 </div>
               </div>
             </div>
